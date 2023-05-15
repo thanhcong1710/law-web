@@ -1,4 +1,5 @@
 import axios from 'axios'
+import VueCookies from 'vue-cookies'
 function processAuthen(error) {
     try {
         if (error.response.status == 401) {
@@ -39,7 +40,7 @@ const g = (link, attributes = null) => new Promise((resolve, reject) => {
   if (typeof link === 'string') {
     axios.get(link,{
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem("api_token")}`
+        'Authorization': `Bearer ${VueCookies.get("access_token")}`
       },
       params: attributes,
     }).then(response => {
@@ -56,7 +57,7 @@ const p = (link, params = null) => new Promise((resolve, reject) => {
     axios.post(link,params,
       {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("api_token")}`
+          'Authorization': `Bearer ${VueCookies.get("access_token")}`
         }
       }
     )

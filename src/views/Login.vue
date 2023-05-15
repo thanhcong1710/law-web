@@ -104,7 +104,7 @@ export default {
     login() {
       let self = this;
       axios
-        .post(process.env.VUE_APP_BASE_API + `/api/auth/login`, {
+        .post(process.env.VUE_APP_BASE_API + `/api/login`, {
           email: self.email,
           password: self.password,
         })
