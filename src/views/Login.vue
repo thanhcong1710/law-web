@@ -120,6 +120,7 @@ export default {
             response.data.expires_in
           );
           localStorage.setItem("user", JSON.stringify(response.data.user));
+          self.$store.commit('set', ["user_data", JSON.stringify(response.data.user)])
           self.$router.push({ path: "/profile" });
         })
         .catch(function (error) {

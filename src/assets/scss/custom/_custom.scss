@@ -1,0 +1,175 @@
+body {
+    background-color: #f5f3f3;
+}
+.booking-temp .package-detail{
+    background-color: #fff;
+    padding: 15px;
+}
+.booking-temp .current-package h5{
+    margin: 10px 0px;
+}
+
+.booking-temp .filter-card{
+    background-color: #fff;
+    padding: 0px;
+}
+.booking-temp .filter-card .header .align-items-center{
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 800;
+}
+.booking-temp .header .timezone-text {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    font-size: 15px;
+    font-weight: 800;
+    color: #9b9b9b;
+}
+.booking-temp .filter-card .header{
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+.booking-temp .filter-card .body{
+    padding: 15px;
+}
+.booking-temp .date-box {
+    font-size: 10px;
+    padding: 1rem 0.5rem;
+}
+.booking-temp .gradient-box{
+    width: 56px;
+    height: 66px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 6px;
+    background: #e0e0e0;
+    padding: 1.5px 2px 2px 2px;
+    text-decoration: none;
+}
+.booking-temp .gradient-box input[type=radio] {
+    width: 0;
+    opacity: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.booking-temp .date-box label, .booking-temp .selected-date {
+    cursor: pointer;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 10px;
+}
+.booking-temp .date-box label .small, .booking-temp .selected-date .small {
+    color: #828282;
+    font-size: 1.4em;
+    line-height: 1.68em;
+    line-height: 1.5;
+}
+.booking-temp .date-box label .normal, .booking-temp .selected-date .normal {
+    color: #4f4f4f;
+    font-size: 1.6em;
+    line-height: 1.92em;
+    line-height: 1.8;
+}
+.booking-temp .gradient-box.active:not(.-inline), .booking-temp .gradient-box:hover:not(.-inline) {
+    background: -webkit-gradient(linear,left top,left bottom,from(#ffc227),to(#f46500));
+    background: linear-gradient(180deg,#ffc227,#f46500);
+}
+
+.booking-temp .gradient-box.active label .normal, .booking-temp .gradient-box:hover label .normal {
+    color: #fa6c29!important;
+}
+.booking-temp .coach-card{
+    margin: 10px 0px;
+}
+.booking-temp .coach-card .title {
+    width: 100%;
+    padding: 15px;
+}
+.booking-temp .coach-card .detail{
+    font-size: 14px;
+    text-align: justify;
+    padding: 15px;
+}
+.booking-temp .coach-card .title .coach-name{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+    width: calc(100% - 80px);
+    float: left;
+}
+.booking-temp .coach-card .title .coach-avatar{
+    width: 80px;
+    float: left;
+}
+.booking-temp .coach-card .card-body{
+    padding: 0px;
+}
+.booking-temp .coach-card .card-footer .btn {
+    font-size: 14px;
+    line-height: 1.68em;
+    padding: 5px 12px;
+}
+.booking-temp .card-footer{
+    padding: 10px;
+}
+.booking-temp .card-footer .btn.btn-primary {
+    background: #fa6c29;
+    color: #fff;
+    border: 1px solid #fa6c29;
+}
+.booking-temp .card-footer .btn.btn-outline-secondary {
+    background: #fff;
+    color: #828282;
+    border: 1px solid #e0e0e0;
+}
+.booking-temp .coach-card .card-footer .btn.btn-like {
+    background: none;
+    padding: 0;
+    color: #747474;
+    background-color: transparent;
+}
+.booking-temp .coach-card .card-footer .btn.btn-like:hover{
+    background-color: transparent;
+    box-shadow:none
+}

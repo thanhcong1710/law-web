@@ -8,20 +8,20 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import Home from "../views/Home.vue";
+import Users from './pages/users'
 
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "inex",
       components: {
         header: AppHeader,
         default: Home,
         footer: AppFooter
-      }
+      },
     },
     {
       path: "/components",
@@ -67,13 +67,18 @@ export default new Router({
         default: Profile,
         footer: AppFooter
       }
-    }
-  ],
+    },
+  ].concat(Users),
   scrollBehavior: to => {
     if (to.hash) {
-      return { selector: to.hash };
+      return {
+        selector: to.hash
+      };
     } else {
-      return { x: 0, y: 0 };
+      return {
+        x: 0,
+        y: 0
+      };
     }
   }
 });
