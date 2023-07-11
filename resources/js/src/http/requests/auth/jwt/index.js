@@ -21,16 +21,16 @@ export default {
       // const { config, response: { status } } = error
       const { config, response } = error
       const originalRequest = config
-
       // if (status === 401) {
       if (response && response.status === 401) {
+        return [200, {error}];
         if (!isAlreadyFetchingAccessToken) {
           isAlreadyFetchingAccessToken = true
           store.dispatch('auth/fetchAccessToken')
             .then((access_token) => {
               isAlreadyFetchingAccessToken = false
               onAccessTokenFetched(access_token)
-            })
+            }) 
         }
 
         const retryOriginalRequest = new Promise((resolve) => {

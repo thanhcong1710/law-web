@@ -17,9 +17,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    LoginJwt: _LoginJWT_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    LoginFirebase: _LoginFirebase_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    LoginAuth0: _LoginAuth0_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    LoginJwt: _LoginJWT_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    // LoginFirebase,
+    // LoginAuth0
   }
 });
 
@@ -168,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       email: 'admin@admin.com',
-      password: 'adminadmin',
+      password: 'abcd1234',
       checkbox_remember_me: false
     };
   },
@@ -279,15 +279,7 @@ var render = function render() {
     attrs: {
       label: "JWT"
     }
-  }, [_c("login-jwt")], 1), _vm._v(" "), _c("vs-tab", {
-    attrs: {
-      label: "Firebase"
-    }
-  }, [_c("login-firebase")], 1), _vm._v(" "), _c("vs-tab", {
-    attrs: {
-      label: "Auth0"
-    }
-  }, [_c("login-auth0")], 1)], 1)], 1)])])])])], 1)]);
+  }, [_c("login-jwt")], 1)], 1)], 1)])])])])], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

@@ -22,6 +22,9 @@ import axios from './axios.js'
 Vue.prototype.$http = axios
 
 // API Calls
+import './http/axios.js'
+
+// API Calls
 import './http/requests'
 
 // mock

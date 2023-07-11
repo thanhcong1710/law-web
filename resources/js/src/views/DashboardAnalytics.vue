@@ -301,9 +301,13 @@ export default {
     VxTimeline
   },
   created () {
+    this.$https.post('/api/demo')
+      .then((response) => { this.checkpointReward = response.data ; })
+      .catch((error)   => { console.log(error) })
+
     //  User Reward Card
     this.$http.get('/api/user/checkpoint-reward')
-      .then((response) => { this.checkpointReward = response.data })
+      .then((response) => { this.checkpointReward = response.data ; })
       .catch((error)   => { console.log(error) })
 
       // Subscribers gained - Statistics

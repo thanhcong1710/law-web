@@ -11,4 +11,7 @@ class ApplicationController extends Controller
     {
         return view('application');
     }
+    public function demo(){
+        return response()->json(['message' => 'Successfully demo']);
+    }
 }

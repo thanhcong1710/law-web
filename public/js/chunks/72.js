@@ -94,6 +94,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
+    this.$https.post('/api/demo').then(function (response) {
+      _this.checkpointReward = response.data;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+
     //  User Reward Card
     this.$http.get('/api/user/checkpoint-reward').then(function (response) {
       _this.checkpointReward = response.data;

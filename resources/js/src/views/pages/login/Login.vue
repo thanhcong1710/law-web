@@ -33,13 +33,13 @@
                     <login-jwt></login-jwt>
                   </vs-tab>
 
-                  <vs-tab label="Firebase">
+                  <!-- <vs-tab label="Firebase">
                     <login-firebase></login-firebase>
                   </vs-tab>
 
                   <vs-tab label="Auth0">
                     <login-auth0></login-auth0>
-                  </vs-tab>
+                  </vs-tab> -->
                 </vs-tabs>
 
               </div>
@@ -60,8 +60,8 @@ import LoginAuth0 from './LoginAuth0.vue'
 export default {
   components: {
     LoginJwt,
-    LoginFirebase,
-    LoginAuth0
+    // LoginFirebase,
+    // LoginAuth0
   }
 }
 </script>

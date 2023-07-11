@@ -41,7 +41,7 @@ export default {
   data () {
     return {
       email: 'admin@admin.com',
-      password: 'adminadmin',
+      password: 'abcd1234',
       checkbox_remember_me: false
     }
   },
