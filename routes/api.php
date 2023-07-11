@@ -21,7 +21,7 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::post('refresh-token', 'AuthController@refresh');
         Route::post('register', 'AuthController@register');
     });
-    Route::group(['middleware' => 'auth'], function ($router) {
-        Route::post('demo', 'ApplicationController@demo')->middleware(['auth']);
+    Route::group(['middleware' => 'jwt.auth'], function ($router) {
+        Route::post('demo', 'ApplicationController@demo');
     });
 });
