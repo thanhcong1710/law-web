@@ -301,7 +301,7 @@ export default {
     VxTimeline
   },
   created () {
-    this.$https.post('/api/demo')
+    this.$http.post('/api/demo')
       .then((response) => { this.checkpointReward = response.data ; })
       .catch((error)   => { console.log(error) })
 

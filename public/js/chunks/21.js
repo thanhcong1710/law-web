@@ -1322,6 +1322,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       var _this = this;
+      this.$https.post('/api/auth/logout', {
+        token: localStorage.getItem('accessToken')
+      }).then(function (response) {});
       // if user is logged in via auth0
       if (this.$auth.profile) this.$auth.logOut();
 
@@ -3889,7 +3892,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("span", {
     staticClass: "ml-2"
-  }, [_vm._v("Logout")])], 1)], 1)])], 1)], 1) : _vm._e();
+  }, [_vm._v("Logout 234")])], 1)], 1)])], 1)], 1) : _vm._e();
 };
 var staticRenderFns = [];
 render._withStripped = true;

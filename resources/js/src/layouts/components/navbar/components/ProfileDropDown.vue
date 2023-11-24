@@ -81,7 +81,9 @@ export default {
   },
   methods: {
     logout () {
-
+      this.$https.post('/api/auth/logout',{
+        token: localStorage.getItem('accessToken')
+      }).then((response) => {})
       // if user is logged in via auth0
       if (this.$auth.profile) this.$auth.logOut()
 
