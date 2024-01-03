@@ -1253,7 +1253,24 @@ const router = new Router({
             pageTitle: 'Export Excel',
             rule: 'editor'
           }
-        }
+        },
+        // =============================================================================
+        // LAW MAIN PAGE LAYOUTS
+        // =============================================================================
+        {
+          path: '/law/list',
+          name: 'law-list',
+          component: () => import('./views/law/list.vue'),
+          meta: {
+            // breadcrumb: [
+            //   { title: 'Home', url: '/' },
+            //   { title: 'eCommerce'},
+            //   { title: 'Shop', active: true }
+            // ],
+            pageTitle: 'Danh sách luật sư',
+            rule: 'editor'
+          }
+        },
       ]
     },
     // =============================================================================
@@ -1353,14 +1370,25 @@ const router = new Router({
           meta: {
             rule: 'editor'
           }
-        }
+        },
+        // =============================================================================
+        // LAW FULL PAGE LAYOUTS
+        // =============================================================================
+        // {
+        //   path: '/landing-page',
+        //   name: 'landing-page',
+        //   component: () => import('@/views/law/landingPage.vue'),
+        //   meta: {
+        //     rule: 'editor'
+        //   }         
+        // }
       ]
     },
     // Redirect to 404 page, if no match found
     {
       path: '*',
       redirect: '/pages/error-404'
-    }
+    },
   ]
 })
 
@@ -1373,38 +1401,13 @@ router.afterEach(() => {
 })
 
 router.beforeEach((to, from, next) => {
-  firebase.auth().onAuthStateChanged(() => {
-
-    // get firebase current user
-    const firebaseCurrentUser = firebase.auth().currentUser
-
-    // if (
-    //     to.path === "/pages/login" ||
-    //     to.path === "/pages/forgot-password" ||
-    //     to.path === "/pages/error-404" ||
-    //     to.path === "/pages/error-500" ||
-    //     to.path === "/pages/register" ||
-    //     to.path === "/callback" ||
-    //     to.path === "/pages/comingsoon" ||
-    //     (auth.isAuthenticated() || firebaseCurrentUser)
-    // ) {
-    //     return next();
-    // }
-
-    // If auth required, check login. If login fails redirect to login page
-    if (to.meta.authRequired) {
-      if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
-        router.push({ path: '/pages/login', query: { to: to.path } })
-      }
+  if (to.meta.authRequired) {
+    if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
+      router.push({ path: '/pages/login', query: { to: to.path } })
     }
+  }
 
-    return next()
-    // Specify the current path as the customState parameter, meaning it
-    // will be returned to the application after auth
-    // auth.login({ target: to.path });
-
-  })
-
+  return next()
 })
 
 export default router

@@ -18,7 +18,7 @@ Vue.use(Vuesax)
 
 
 // axios
-import axios from './axios.js'
+import axios from './http/axios.js'
 Vue.prototype.$http = axios
 
 // API Calls
