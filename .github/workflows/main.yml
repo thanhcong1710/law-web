@@ -9,7 +9,7 @@ on:
 jobs:
   law_production:
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
     - name: Pull
       run: git pull origin main
