@@ -38,6 +38,7 @@
     <template v-if="mainLayoutType === 'horizontal' && windowWidth >= 1200">
       <the-navbar-horizontal
         :navbarType= "navbarType"
+        :navMenuItems="navMenuItems"
         :class="[
           {'text-white' : isNavbarDark  && !isThemeDark},
           {'text-base'  : !isNavbarDark && isThemeDark}
@@ -45,12 +46,12 @@
 
       <div style="height: 62px" v-if="navbarType === 'static'"></div>
 
-      <h-nav-menu
+      <!-- <h-nav-menu
         :class="[
           {'text-white' : isNavbarDark  && !isThemeDark},
           {'text-base'  : !isNavbarDark && isThemeDark}
         ]"
-        :navMenuItems="navMenuItems" />
+        :navMenuItems="navMenuItems" /> -->
     </template>
 
     <template v-else>

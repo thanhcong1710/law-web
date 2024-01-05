@@ -24,7 +24,7 @@ const themeConfig = {
   hideScrollToTop   : false,       // options[Boolean] : true, false(default)
   mainLayoutType    : 'horizontal',  // options[String]  : vertical(default) / horizontal
   navbarColor       : '#fff',      // options[String]  : HEX color / rgb / rgba / Valid HTML Color name - (default: #fff)
-  navbarType        : 'sticky',  // options[String]  : floating(default) / static / sticky / hidden
+  navbarType        : 'static',  // options[String]  : floating(default) / static / sticky / hidden
   routerTransition  : 'zoom-fade', // options[String]  : zoom-fade / slide-fade / fade-bottom / fade / zoom-out / none(default)
   rtl               : false,       // options[Boolean] : true, false(default)
   sidebarCollapsed  : false,       // options[Boolean] : true, false(default)

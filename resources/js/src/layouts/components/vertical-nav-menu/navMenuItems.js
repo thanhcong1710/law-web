@@ -739,115 +739,115 @@ export default [
       }
     ]
   },
-  {
-    header: 'Charts & Maps',
-    icon: 'PieChartIcon',
-    i18n: 'ChartsAndMaps',
-    items: [
-      {
-        url: null,
-        name: 'Charts',
-        icon: 'PieChartIcon',
-        tag: '3',
-        tagColor: 'success',
-        i18n: 'Charts',
-        submenu: [
-          {
-            url: '/charts-and-maps/charts/apex-charts',
-            name: 'Apex Charts',
-            slug: 'extra-component-charts-apex-charts',
-            i18n: 'ApexCharts'
-          },
-          {
-            url: '/charts-and-maps/charts/chartjs',
-            name: 'chartjs',
-            slug: 'extra-component-charts-chartjs',
-            i18n: 'chartjs'
-          },
-          {
-            url: '/charts-and-maps/charts/echarts',
-            name: 'echarts',
-            slug: 'extra-component-charts-echarts',
-            i18n: 'echarts'
-          }
-        ]
-      },
-      {
-        url: '/charts-and-maps/maps/google-map',
-        name: 'Google Map',
-        icon: 'MapIcon',
-        slug: 'extra-component-maps-google-map',
-        i18n: 'GoogleMap'
-      }
-    ]
-  },
-  {
-    header: 'Others',
-    icon: 'MoreHorizontalIcon',
-    i18n: 'Others',
-    items: [
-      {
-        url: null,
-        name: 'Menu Levels',
-        icon: 'MenuIcon',
-        i18n: 'MenuLevels',
-        submenu: [
-          {
-            url: null,
-            name: 'Menu Level 2.1',
-            i18n: 'MenuLevel2p1'
-          },
-          {
-            url: null,
-            name: 'Menu Level 2.2',
-            i18n: 'MenuLevel2p2',
-            submenu: [
-              {
-                url: null,
-                name: 'Menu Level 3.1',
-                i18n: 'MenuLevel3p1'
-              },
-              {
-                url: null,
-                name: 'Menu Level 3.2',
-                i18n: 'MenuLevel3p2'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        url: null,
-        name: 'Disabled Menu',
-        icon: 'EyeOffIcon',
-        i18n: 'DisabledMenu',
-        isDisabled: true
-      },
-      {
-        url: null,
-        name: 'Support',
-        icon: 'SmileIcon',
-        i18n: 'Support',
-        submenu: [
-          {
-            url: 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/',
-            name: 'Documentation',
-            icon: 'BookOpenIcon',
-            slug: 'external',
-            i18n: 'Documentation',
-            target: '_blank'
-          },
-          {
-            url: 'https://pixinvent.ticksy.com/',
-            name: 'Raise Support',
-            icon: 'LifeBuoyIcon',
-            slug: 'external',
-            i18n: 'RaiseSupport',
-            target: '_blank'
-          }
-        ]
-      }
-    ]
-  }
+  // {
+  //   header: 'Charts & Maps',
+  //   icon: 'PieChartIcon',
+  //   i18n: 'ChartsAndMaps',
+  //   items: [
+  //     {
+  //       url: null,
+  //       name: 'Charts',
+  //       icon: 'PieChartIcon',
+  //       tag: '3',
+  //       tagColor: 'success',
+  //       i18n: 'Charts',
+  //       submenu: [
+  //         {
+  //           url: '/charts-and-maps/charts/apex-charts',
+  //           name: 'Apex Charts',
+  //           slug: 'extra-component-charts-apex-charts',
+  //           i18n: 'ApexCharts'
+  //         },
+  //         {
+  //           url: '/charts-and-maps/charts/chartjs',
+  //           name: 'chartjs',
+  //           slug: 'extra-component-charts-chartjs',
+  //           i18n: 'chartjs'
+  //         },
+  //         {
+  //           url: '/charts-and-maps/charts/echarts',
+  //           name: 'echarts',
+  //           slug: 'extra-component-charts-echarts',
+  //           i18n: 'echarts'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       url: '/charts-and-maps/maps/google-map',
+  //       name: 'Google Map',
+  //       icon: 'MapIcon',
+  //       slug: 'extra-component-maps-google-map',
+  //       i18n: 'GoogleMap'
+  //     }
+  //   ]
+  // },
+  // {
+  //   header: 'Others',
+  //   icon: 'MoreHorizontalIcon',
+  //   i18n: 'Others',
+  //   items: [
+  //     {
+  //       url: null,
+  //       name: 'Menu Levels',
+  //       icon: 'MenuIcon',
+  //       i18n: 'MenuLevels',
+  //       submenu: [
+  //         {
+  //           url: null,
+  //           name: 'Menu Level 2.1',
+  //           i18n: 'MenuLevel2p1'
+  //         },
+  //         {
+  //           url: null,
+  //           name: 'Menu Level 2.2',
+  //           i18n: 'MenuLevel2p2',
+  //           submenu: [
+  //             {
+  //               url: null,
+  //               name: 'Menu Level 3.1',
+  //               i18n: 'MenuLevel3p1'
+  //             },
+  //             {
+  //               url: null,
+  //               name: 'Menu Level 3.2',
+  //               i18n: 'MenuLevel3p2'
+  //             }
+  //           ]
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       url: null,
+  //       name: 'Disabled Menu',
+  //       icon: 'EyeOffIcon',
+  //       i18n: 'DisabledMenu',
+  //       isDisabled: true
+  //     },
+  //     {
+  //       url: null,
+  //       name: 'Support',
+  //       icon: 'SmileIcon',
+  //       i18n: 'Support',
+  //       submenu: [
+  //         {
+  //           url: 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/',
+  //           name: 'Documentation',
+  //           icon: 'BookOpenIcon',
+  //           slug: 'external',
+  //           i18n: 'Documentation',
+  //           target: '_blank'
+  //         },
+  //         {
+  //           url: 'https://pixinvent.ticksy.com/',
+  //           name: 'Raise Support',
+  //           icon: 'LifeBuoyIcon',
+  //           slug: 'external',
+  //           i18n: 'RaiseSupport',
+  //           target: '_blank'
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // }
 ]
 

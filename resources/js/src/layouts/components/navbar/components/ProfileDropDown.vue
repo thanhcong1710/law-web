@@ -62,6 +62,9 @@
       </vs-dropdown-menu>
     </vs-dropdown>
   </div>
+  <router-link to="/pages/login" v-else>
+    <vs-button>Login</vs-button>
+  </router-link>
 </template>
 
 <script>
