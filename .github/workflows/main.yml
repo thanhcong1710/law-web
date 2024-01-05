@@ -1,0 +1,19 @@
+name: LAW
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  law_production:
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Pull
+      run: git pull origin main
+      working-directory: /var/www/html/law-web
+    - name: Complete
+      run: npm run production
+      working-directory: /var/www/html/law-web
