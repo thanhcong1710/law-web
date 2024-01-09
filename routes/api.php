@@ -21,6 +21,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     });
     Route::prefix('law')->group(function () {
         Route::post('list', 'LawController@list');
+        Route::post('item/detail', 'LawController@getItemDetail');
     });
     Route::group(['middleware' => 'jwt.auth'], function ($router) {
         Route::post('auth/logout', 'AuthController@logout');

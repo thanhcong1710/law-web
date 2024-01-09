@@ -129,4 +129,36 @@ class UtilityServiceProvider extends ServiceProvider
 		$data->paging = $pagination;
 		return $data;
 	}
+	public static function allLawType(){
+		return [
+			'1' => [
+				'title' => 'Đất đai',
+				'color' => 'primary'
+			],
+			'2' => [
+				'title' => 'Hình sự',
+				'color' => 'secondary'
+			],
+			'3' => [
+				'title' => 'Dân sự',
+				'color' => 'success'
+			],
+			'4' => [
+				'title' => 'Thừa kế - Di chúc',
+				'color' => 'danger'
+			],
+			'5' => [
+				'title' => 'Hôn nhân gia đình',
+				'color' => 'warning'
+			],
+			'6' => [
+				'title' => 'Bảo hiểm',
+				'color' => 'info'
+			],
+			'7' => [
+				'title' => 'Hành chính',
+				'color' => 'dark'
+			],
+		];
+	}
 }

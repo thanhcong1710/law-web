@@ -80,3 +80,18 @@ Vue.filter('filter_tags', function (value) {
 Vue.filter('k_formatter', function (num) {
   return num > 999 ? `${(num / 1000).toFixed(1)}k` : num
 })
+
+Vue.filter('formatCurrency', (v, c = 'đ') => {
+  let resp     = ''
+  let number   = 0
+  let currency = c
+  if (parseFloat(v) < 100) {
+    number   = parseFloat(v)
+    currency = '%'
+    resp     = `${number}${currency}`
+  } else {
+    number = parseInt(v)
+    resp   = number > 0 ? `${number.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,').slice(0, -2)}${currency}` : 0
+  }
+  return resp
+})

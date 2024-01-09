@@ -255,10 +255,11 @@ export default {
       this.$store.dispatch('eCommerce/toggleItemInWishList', item)
     },
     additemInCart (item) {
+      console.log(item);
       this.$store.dispatch('eCommerce/additemInCart', item)
     },
     cartButtonClicked (item) {
-      this.isInCart(item.objectID) ? this.$router.push('/apps/eCommerce/checkout').catch(() => {}) : this.additemInCart(item)
+      this.isInCart(item.objectID) ? this.$router.push('/law/checkout').catch(() => {}) : this.additemInCart(item)
     },
     loadListItem(){
       this.$http.post('/api/law/list', { 'keyword' : this.keyword })

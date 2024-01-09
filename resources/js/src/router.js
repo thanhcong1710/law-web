@@ -46,22 +46,48 @@ const router = new Router({
         // =============================================================================
         {
           path: '/',
-          redirect: '/dashboard/analytics'
+          redirect: '/law/list'
         },
         {
-          path: '/dashboard/analytics',
-          name: 'dashboard-analytics',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          path: '/law/list',
+          name: 'law-list',
+          component: () => import('./views/law/list.vue'),
           meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Danh sách luật sư', active: true }
+            ],
+            pageTitle: 'Danh sách luật sư',
             rule: 'editor'
           }
         },
         {
-          path: '/dashboard/ecommerce',
-          name: 'dashboard-ecommerce',
-          component: () => import('./views/DashboardECommerce.vue'),
+          path: '/law/item/:item_id',
+          name: 'law-item-detail-view',
+          component: () => import('./views/law/ItemDetailView.vue'),
           meta: {
-            rule: 'admin'
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Danh sách luật sư', url: {name: 'law-list'} },
+              { title: 'Thông tin chi tiết', active: true }
+            ],
+            parent: 'law-item-detail-view',
+            pageTitle: 'Thông tin chiết',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/law/checkout',
+          name: 'law-checkout',
+          component: () => import('./views/law/Checkout.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Danh sách luật sư', url: {name: 'law-list'} },
+              { title: 'Giỏ hàng', active: true }
+            ],
+            pageTitle: 'Giỏ hàng',
+            rule: 'editor'
           }
         },
 
@@ -1257,20 +1283,7 @@ const router = new Router({
         // =============================================================================
         // LAW MAIN PAGE LAYOUTS
         // =============================================================================
-        {
-          path: '/law/list',
-          name: 'law-list',
-          component: () => import('./views/law/list.vue'),
-          meta: {
-            // breadcrumb: [
-            //   { title: 'Home', url: '/' },
-            //   { title: 'eCommerce'},
-            //   { title: 'Shop', active: true }
-            // ],
-            pageTitle: 'Danh sách luật sư',
-            rule: 'editor'
-          }
-        },
+        
       ]
     },
     // =============================================================================

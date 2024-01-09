@@ -22,10 +22,10 @@
                         <!-- RATING & PRICE -->
                         <div class="flex justify-between items-center">
                             <div class="text-warning border border-solid border-warning flex py-1 px-2 rounded">
-                                <span class="text-sm mr-1">5</span>
+                                <span class="text-sm mr-1">{{item.rating}}</span>
                                 <feather-icon icon="StarIcon" svgClasses="h-4 w-4" />
                             </div>
-                            <h6 class="font-bold">$10</h6>
+                            <h6 class="font-bold">{{item.price | formatCurrency }}</h6>
                         </div>
 
                         <!-- TITLE & DESCRIPTION -->
@@ -53,7 +53,7 @@ export default{
   },
   methods: {
     navigate_to_detail_view () {
-      this.$router.push({name: 'ecommerce-item-detail-view', params: {item_id: this.item.objectID }})
+      this.$router.push({name: 'law-item-detail-view', params: {item_id: this.item.objectID }})
         .catch(() => {})
     }
   }

@@ -23,8 +23,7 @@
                     <div class="p-4 pt-6">
                         <slot name="item-meta">
                             <h6 class="item-name font-semibold mb-1 hover:text-primary cursor-pointer" @click="navigate_to_detail_view">{{ item.name }}</h6>
-                            <p class="text-sm mb-4">By <span class="font-semibold cursor-pointer">{{ item.brand }}</span></p>
-                            <p class="item-description text-sm">{{ item.intro_text }}</p>
+                            <p class="item-description text-sm text-justify">{{ item.intro_text }}</p>
                         </slot>
                     </div>
                 </div>
@@ -35,12 +34,12 @@
                     <div class="p-4 flex flex-col w-full">
 
                         <div class="text-warning flex self-end border border-solid border-warning py-1 px-2 rounded">
-                            <span class="text-sm mr-1">5</span>
+                            <span class="text-sm mr-1">{{item.rating}}</span>
                             <feather-icon icon="StarIcon" svgClasses="h-4 w-4" />
                         </div>
 
                         <div class="my-6">
-                            <h5 class="font-bold text-center">$10</h5>
+                            <h5 class="font-bold text-center">{{item.price | formatCurrency }}</h5>
                             <span class="text-grey flex items-start justify-center mt-1" v-if="item.free_shipping">
                                 <feather-icon icon="ShoppingCartIcon" svgClasses="w-4 h-4" />
                                 <span class="text-sm ml-2">Free Shipping</span>
@@ -84,7 +83,7 @@ export default{
       this.isInCart(item.objectID) ? this.$router.push('/apps/eCommerce/checkout').catch(() => {}) : this.additemInCart(item)
     },
     navigate_to_detail_view () {
-      this.$router.push({name: 'ecommerce-item-detail-view', params: {item_id: this.item.objectID }})
+      this.$router.push({name: 'law-item-detail-view', params: {item_id: this.item.objectID }})
         .catch(() => {})
     }
   }
