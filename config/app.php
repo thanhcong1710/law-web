@@ -231,4 +231,9 @@ return [
 
     ],
 
+    'bigblubutton' => [
+        'url' => 'https://bbb.dapanh.com/bigbluebutton/',
+        'secret' => 'vWmKBZtDtq3pbKEDyxBJ7YcXKqPEjvqR2wm6qyvdU0'
+    ],
+
 ];

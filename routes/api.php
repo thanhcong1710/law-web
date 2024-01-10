@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'api'], function ($router) {
+    Route::get('bbb/create', 'BigBluButtonController@createRoom');
+    Route::get('bbb/join', 'BigBluButtonController@joinRoom');
+    Route::get('bbb/info', 'BigBluButtonController@getRoomInfo');
+    Route::get('bbb/list', 'BigBluButtonController@getListRoom');
+    Route::get('bbb/end', 'BigBluButtonController@endRoom');
+    Route::get('bbb/record', 'BigBluButtonController@getRecords');
+    Route::get('bbb/record/delete', 'BigBluButtonController@deleteRecord');
+
     Route::prefix('auth')->group(function () {
         Route::post('login', 'AuthController@login');
         Route::post('register', 'AuthController@register');
