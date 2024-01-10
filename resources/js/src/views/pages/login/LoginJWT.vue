@@ -1,16 +1,16 @@
 <template>
   <div>
     <vs-input
-        v-validate="'required|email|min:3'"
+        v-validate="{ required: true, regex: /(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})\b/g }"
         data-vv-validate-on="blur"
-        name="email"
+        name="phone"
         icon-no-border
         icon="icon icon-user"
         icon-pack="feather"
-        label-placeholder="Email"
-        v-model="email"
+        label-placeholder="Số điện thoại"
+        v-model="phone"
         class="w-full"/>
-    <span class="text-danger text-sm">{{ errors.first('email') }}</span>
+    <span class="text-danger text-sm">{{ errors.first('phone') }}</span>
 
     <vs-input
         data-vv-validate-on="blur"
@@ -20,7 +20,7 @@
         icon-no-border
         icon="icon icon-lock"
         icon-pack="feather"
-        label-placeholder="Password"
+        label-placeholder="Mật khẩu"
         v-model="password"
         class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
@@ -40,14 +40,14 @@
 export default {
   data () {
     return {
-      email: 'admin@admin.com',
+      phone: '0389941902',
       password: 'abcd1234',
       checkbox_remember_me: false
     }
   },
   computed: {
     validateForm () {
-      return !this.errors.any() && this.email !== '' && this.password !== ''
+      return !this.errors.any() && this.phone !== '' && this.password !== ''
     }
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
-          email: this.email,
+          phone: this.phone,
           password: this.password
         }
       }

@@ -161,4 +161,10 @@ class UtilityServiceProvider extends ServiceProvider
 			],
 		];
 	}
+	public static function convertPhoneNumber($phone_number){
+		if(substr($phone_number, 0, 2) == '84'){
+			$phone_number = '0'+ substr($phone_number, 2, strlen($phone_number));
+		}
+		return $phone_number;
+	}
 }

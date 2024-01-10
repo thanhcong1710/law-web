@@ -13,23 +13,22 @@ Author URL: http://www.themeforest.net/user/pixinvent
     <vs-input
       v-validate="'required|alpha_dash|min:3'"
       data-vv-validate-on="blur"
-      label-placeholder="Name"
+      label-placeholder="Họ tên"
       name="displayName"
-      placeholder="Name"
+      placeholder="Họ tên"
       v-model="displayName"
       class="w-full" />
     <span class="text-danger text-sm">{{ errors.first('displayName') }}</span>
 
     <vs-input
-      v-validate="'required|email'"
+      v-validate="{ required: true, regex: /([\+84|84|0]+(3|5|7|8|9))+([0-9]{8})\b/ }"
       data-vv-validate-on="blur"
-      name="email"
-      type="email"
-      label-placeholder="Email"
-      placeholder="Email"
-      v-model="email"
+      name="phone"
+      label-placeholder="Số điện thoại"
+      placeholder="Số điện thoại"
+      v-model="phone"
       class="w-full mt-6" />
-    <span class="text-danger text-sm">{{ errors.first('email') }}</span>
+    <span class="text-danger text-sm">{{ errors.first('phone') }}</span>
 
     <vs-input
       ref="password"
@@ -37,8 +36,8 @@ Author URL: http://www.themeforest.net/user/pixinvent
       data-vv-validate-on="blur"
       v-validate="'required|min:6|max:10'"
       name="password"
-      label-placeholder="Password"
-      placeholder="Password"
+      label-placeholder="Mật khẩu"
+      placeholder="Mật khẩu"
       v-model="password"
       class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
@@ -49,8 +48,8 @@ Author URL: http://www.themeforest.net/user/pixinvent
       data-vv-validate-on="blur"
       data-vv-as="password"
       name="confirm_password"
-      label-placeholder="Confirm Password"
-      placeholder="Confirm Password"
+      label-placeholder="Mật khẩu"
+      placeholder="Mật khẩu"
       v-model="confirm_password"
       class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('confirm_password') }}</span>
@@ -66,7 +65,7 @@ export default {
   data () {
     return {
       displayName: '',
-      email: '',
+      phone: '',
       password: '',
       confirm_password: '',
       isTermsConditionAccepted: true
@@ -74,7 +73,7 @@ export default {
   },
   computed: {
     validateForm () {
-      return !this.errors.any() && this.displayName !== '' && this.email !== '' && this.password !== '' && this.confirm_password !== '' && this.isTermsConditionAccepted === true
+      return !this.errors.any() && this.displayName !== '' && this.phone !== '' && this.password !== '' && this.confirm_password !== '' && this.isTermsConditionAccepted === true
     }
   },
   methods: {
@@ -104,7 +103,7 @@ export default {
       const payload = {
         userDetails: {
           displayName: this.displayName,
-          email: this.email,
+          phone: this.phone,
           password: this.password,
           confirmPassword: this.confirm_password
         },

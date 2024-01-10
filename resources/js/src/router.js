@@ -1297,14 +1297,6 @@ const router = new Router({
         // PAGES
         // =============================================================================
         {
-          path: '/callback',
-          name: 'auth-callback',
-          component: () => import('@/views/Callback.vue'),
-          meta: {
-            rule: 'editor'
-          }
-        },
-        {
           path: '/pages/login',
           name: 'page-login',
           component: () => import('@/views/pages/login/Login.vue'),
@@ -1332,6 +1324,15 @@ const router = new Router({
           path: '/pages/reset-password',
           name: 'page-reset-password',
           component: () => import('@/views/pages/ResetPassword.vue'),
+          meta: {
+            rule: 'editor'
+          }
+        },
+
+        {
+          path: '/callback',
+          name: 'auth-callback',
+          component: () => import('@/views/Callback.vue'),
           meta: {
             rule: 'editor'
           }

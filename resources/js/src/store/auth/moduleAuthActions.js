@@ -74,7 +74,7 @@ export default {
     }
 
     // Try to sigin
-    firebase.auth().signInWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
+    firebase.auth().signInWithEmailAndPassword(payload.userDetails.phone, payload.userDetails.password)
 
       .then((result) => {
 
@@ -244,7 +244,7 @@ export default {
   registerUser ({dispatch}, payload) {
 
     // create user using firebase
-    firebase.auth().createUserWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
+    firebase.auth().createUserWithEmailAndPassword(payload.userDetails.phone, payload.userDetails.password)
       .then(() => {
         payload.notify({
           title: 'Account Created',
@@ -303,7 +303,7 @@ export default {
   loginJWT ({ commit }, payload) {
 
     return new Promise((resolve, reject) => {
-      jwt.login(payload.userDetails.email, payload.userDetails.password)
+      jwt.login(payload.userDetails.phone, payload.userDetails.password)
         .then(response => {
           // If there's user data in response
           if (response.data && response.data.userData) {
@@ -321,7 +321,7 @@ export default {
 
             resolve(response)
           } else {
-            reject({message: 'Wrong Email or Password'})
+            reject({message: 'Wrong Phone or Password'})
           }
 
         })
@@ -330,7 +330,7 @@ export default {
   },
   registerUserJWT ({ commit }, payload) {
 
-    const { displayName, email, password, confirmPassword } = payload.userDetails
+    const { displayName, phone, password, confirmPassword } = payload.userDetails
 
     return new Promise((resolve, reject) => {
 
@@ -339,7 +339,7 @@ export default {
         reject({message: 'Password doesn\'t match. Please try again.'})
       }
 
-      jwt.registerUser(displayName, email, password)
+      jwt.registerUser(displayName, phone, password, confirmPassword)
         .then(response => {
           // Redirect User
           router.push(router.currentRoute.query.to || '/')

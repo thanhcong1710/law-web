@@ -44,17 +44,18 @@ export default {
       return Promise.reject(error)
     })
   },
-  login (email, pwd) {
+  login (phone, pwd) {
     return axios.post('/api/auth/login', {
-      email,
+      phone,
       password: pwd
     })
   },
-  registerUser (name, email, pwd) {
+  registerUser (name, phone, pwd, pwd_cf) {
     return axios.post('/api/auth/register', {
-      displayName: name,
-      email,
-      password: pwd
+      name: name,
+      phone,
+      password: pwd,
+      password_confirmation: pwd_cf
     })
   },
   refreshToken () {
