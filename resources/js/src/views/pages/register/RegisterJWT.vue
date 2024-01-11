@@ -11,7 +11,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 <template>
   <div class="clearfix">
     <vs-input
-      v-validate="'required|alpha_dash|min:3'"
+      v-validate="'required|min:3'"
       data-vv-validate-on="blur"
       label-placeholder="Họ tên"
       name="displayName"
@@ -107,7 +107,8 @@ export default {
           password: this.password,
           confirmPassword: this.confirm_password
         },
-        notify: this.$vs.notify
+        notify: this.$vs.notify,
+        redirect_url : this.$store.state.eCommerce.cartItems.length > 0  ? '/law/checkout':''
       }
       this.$store.dispatch('auth/registerUserJWT', payload)
     }

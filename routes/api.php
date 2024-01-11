@@ -33,6 +33,9 @@ Route::group(['middleware' => 'api'], function ($router) {
     });
     Route::group(['middleware' => 'jwt.auth'], function ($router) {
         Route::post('auth/logout', 'AuthController@logout');
-        Route::post('demo', 'ApplicationController@demo');
+        Route::prefix('payment')->group(function () {
+            Route::post('add', 'PaymentController@add');
+        });
+        Route::post('payment', 'ApplicationController@demo');
     });
 });

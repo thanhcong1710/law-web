@@ -71,7 +71,6 @@ export default {
       return true
     },
     loginJWT () {
-
       if (!this.checkLogin()) return
 
       // Loading
@@ -82,7 +81,8 @@ export default {
         userDetails: {
           phone: this.phone,
           password: this.password
-        }
+        },
+        redirect_url : this.$store.state.eCommerce.cartItems.length > 0  ? '/law/checkout':''
       }
 
       this.$store.dispatch('auth/loginJWT', payload)

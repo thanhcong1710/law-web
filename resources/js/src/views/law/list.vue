@@ -262,8 +262,12 @@ export default {
       this.isInCart(item.objectID) ? this.$router.push('/law/checkout').catch(() => {}) : this.additemInCart(item)
     },
     loadListItem(){
+      this.$vs.loading()
       this.$http.post('/api/law/list', { 'keyword' : this.keyword })
-      .then((response) => { this.listItem = response.data.list ; })
+      .then((response) => { 
+        this.listItem = response.data.list ; 
+        this.$vs.loading.close()
+      })
       .catch((error)   => { console.log(error) })
     }
   },

@@ -307,8 +307,9 @@ export default {
         .then(response => {
           // If there's user data in response
           if (response.data && response.data.userData) {
+
             // Navigate User to homepage
-            router.push(router.currentRoute.query.to || '/')
+            router.push(payload.redirect_url || '/')
 
             // Set accessToken
             localStorage.setItem('accessToken', response.data.accessToken)
@@ -342,7 +343,7 @@ export default {
       jwt.registerUser(displayName, phone, password, confirmPassword)
         .then(response => {
           // Redirect User
-          router.push(router.currentRoute.query.to || '/')
+          router.push(payload.redirect_url || '/')
 
           // Update data in localStorage
           localStorage.setItem('accessToken', response.data.accessToken)

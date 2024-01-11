@@ -17,7 +17,7 @@
             :hide-buttons="true">
 
             <!-- tab 1 content -->
-            <tab-content title="Cart" icon="feather icon-shopping-cart" class="mb-5">
+            <tab-content title="Giỏ hàng" icon="feather icon-shopping-cart" class="mb-5">
 
                 <!-- IF CART HAVE ITEMS -->
                 <div class="vx-row" v-if="cartItems.length">
@@ -88,7 +88,7 @@
                                 <span>{{cartItems | getTotal}}</span>
                             </div>
 
-                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">PLACE ORDER</vs-button>
+                            <vs-button class="w-full" @click="addOrder()">PLACE ORDER</vs-button>
                         </vx-card>
                     </div>
                 </div>
@@ -101,139 +101,32 @@
             </tab-content>
 
             <!-- tab 2 content -->
-            <tab-content title="Address" icon="feather icon-home" class="mb-5">
-
-                <div class="vx-row">
-
-                    <!-- LEFT COL: NEW ADDRESS -->
-                    <div class="vx-col lg:w-2/3 w-full">
-                        <vx-card title="Add New Address" subtitle="Be sure to check &quot;Deliver to this address&quot; when you have finished" class="mb-base">
-
-                            <form data-vv-scope="add-new-address">
-                                <div class="vx-row">
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required|alpha_spaces'"
-                                            data-vv-as="field"
-                                            name="fullName"
-                                            label="Full Name:"
-                                            v-model="fullName"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.fullName')" class="text-danger">{{ errors.first('add-new-address.fullName') }}</span>
-
-                                    </div>
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required|digits:10'"
-                                            name="mobileNum"
-                                            label="Mobile Number:"
-                                            v-model="mobileNum"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.mobileNum')" class="text-danger">{{ errors.first('add-new-address.mobileNum') }}</span>
-                                    </div>
-
-                                </div>
-
-                                <div class="vx-row">
-
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required'"
-                                            name="houseNum"
-                                            label="Flat, House No:"
-                                            v-model="houseNum"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.houseNum')" class="text-danger">{{ errors.first('add-new-address.houseNum') }}</span>
-                                    </div>
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            name="landmark"
-                                            label="Landmark e.g. near apollo hospital:"
-                                            v-model="landmark"
-                                            class="w-full mt-5" />
-                                    </div>
-
-                                </div>
-
-                                <div class="vx-row">
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required'"
-                                            name="city"
-                                            label="Town/City:"
-                                            v-model="city"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.city')" class="text-danger">{{ errors.first('add-new-address.city') }}</span>
-                                    </div>
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-                                        <vs-input
-                                            v-validate="'required|min:3|max:6|numeric'"
-                                            name="pincode"
-                                            label="Pincode:"
-                                            v-model="pincode"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.pincode')" class="text-danger">{{ errors.first('add-new-address.pincode') }}</span>
-                                    </div>
-                                </div>
-
-                                <div class="vx-row">
-
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required'"
-                                            name="state"
-                                            label="State:"
-                                            v-model="state"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.state')" class="text-danger">{{ errors.first('add-new-address.state') }}</span>
-                                    </div>
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-select label="Address Type:" v-model="addressType" class="w-full mt-5">
-                                            <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in addressTypeOptions" />
-                                        </vs-select>
-                                    </div>
-
-                                </div>
-                                      <vs-button class="mt-6 ml-auto flex" @click.prevent="submitNewAddressForm">SAVE AND DELIVER HERE</vs-button>
-                            </form>
-                        </vx-card>
-                    </div>
-
-                    <!-- RIGHT COL: CONTINUE WITH SAVED ADDRESS -->
-                    <div class="vx-col lg:w-1/3 w-full">
-                        <vx-card title="John Doe">
-                            <div>
-                                <p>9447 Glen Eagles Drive</p>
-                                <p>Lewis Center, OH 43035</p>
-                                <p class="my-4">UTC-5: Eastern Standard Time (EST)</p>
-                                <p>202-555-0140</p>
+            <tab-content title="Tài khoản" icon="feather icon-home" class="mb-5" v-if="!activeUserInfo.displayName">
+              <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4" style="margin:auto !important">
+                <vx-card>
+                    <div slot="no-body" class="full-page-bg-color" style="padding-bottom: 30px;">
+                        <div class="vx-row no-gutter">
+                            <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
+                                <img src="@assets/images/pages/register.jpg" alt="register" class="mx-auto">
                             </div>
-
-                            <vs-divider />
-
-                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">DELIVER TO THIS ADDRESS</vs-button>
-                        </vx-card>
+                            <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center  d-theme-dark-bg">
+                                <div class="px-8 pt-8 register-tabs-container">
+                                    <div class="vx-card__title mb-4">
+                                        <h4 class="mb-4">Create Account</h4>
+                                        <p>Fill the below form to create a new account.</p>
+                                    </div>
+                                    <br>
+                                    <register-jwt></register-jwt>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
+                </vx-card>
+              </div>
             </tab-content>
 
             <!-- tab 3 content -->
-            <tab-content title="Payment" icon="feather icon-credit-card" class="mb-5">
+            <tab-content title="Thanh toán" icon="feather icon-credit-card" class="mb-5">
 
                 <div class="vx-row">
 
@@ -337,12 +230,18 @@
 <script>
 import { FormWizard, TabContent } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import RegisterJwt from './../pages/register/RegisterJWT.vue'
 const ItemListView = () => import('./components/ItemListView.vue')
+import router from '@/router'
 
 export default {
   data () {
     return {
-
+      displayName: '',
+      phone: '',
+      password: '',
+      confirm_password: '',
+      isTermsConditionAccepted: true,
       // TAB 2
       fullName: '',
       mobileNum: '',
@@ -369,6 +268,12 @@ export default {
     },
     isInWishList () {
       return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
+    },
+    activeUserInfo () {
+      return this.$store.state.AppActiveUser
+    },
+    validateForm () {
+      return !this.errors.any() && this.displayName !== '' && this.phone !== '' && this.password !== '' && this.confirm_password !== '' && this.isTermsConditionAccepted === true
     }
   },
   methods: {
@@ -392,25 +297,18 @@ export default {
       const itemIndex = Math.abs(index + 1 - this.cartItems.length)
       this.$store.dispatch('eCommerce/updateItemQuantity', { quantity: event, index: itemIndex })
     },
-
-    // TAB 2
-    submitNewAddressForm () {
-      return new Promise(() => {
-        this.$validator.validateAll('add-new-address').then(result => {
-          if (result) {
-            // if form have no errors
-            this.$refs.checkoutWizard.nextTab()
-          } else {
-            this.$vs.notify({
-              title: 'Error',
-              text: 'Please enter valid details',
-              color: 'warning',
-              iconPack: 'feather',
-              icon: 'icon-alert-circle'
-            })
-          }
+    addOrder(){
+      if(this.activeUserInfo.displayName){
+        this.$vs.loading()
+        this.$http.post('/api/payment/add', { 'cartItems' : this.cartItems })
+        .then((response) => {  
+          this.$refs.checkoutWizard.nextTab(); 
+          this.$vs.loading.close()
         })
-      })
+        .catch((error)   => { console.log(error); this.$vs.loading.close(); })
+      }else{
+         this.$refs.checkoutWizard.nextTab()
+      }
     },
 
     // TAB 3
@@ -442,7 +340,8 @@ export default {
   components: {
     ItemListView,
     FormWizard,
-    TabContent
+    TabContent,
+    RegisterJwt
   },
   filters:{
     getTotal: function(items){

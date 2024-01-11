@@ -36,8 +36,14 @@ class AuthController extends Controller
         $user->phone = u::convertPhoneNumber($request->phone);
         $user->password = bcrypt($request->password);
         $user->status = 'Active';
-        $user->save();       
-        return response()->json(['status' => 'success'], 200);
+        $user->save(); 
+        
+        $credentials = request(['phone', 'password']);
+        if (! $token = JWTAuth::attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+      
+        return $this->respondWithToken($token, $request->phone);
     } 
 
     /**
