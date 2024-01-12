@@ -109,6 +109,9 @@ class AuthController extends Controller
                 'providerId' => "jwt",
                 'uid' => auth()->user()->id,
                 'address' =>  auth()->user()->address,
+                'birthday' => auth()->user()->birthday ? date('d/m/Y', strtotime(auth()->user()->birthday )) : null,
+                'note' => auth()->user()->note,
+                'gender' => auth()->user()->gender,
             ]
         ]);
     }

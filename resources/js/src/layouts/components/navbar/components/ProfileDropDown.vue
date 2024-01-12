@@ -59,9 +59,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
-
+import axios from './../../../../http/axios.js'
 export default {
   data () {
     return {
@@ -75,20 +73,12 @@ export default {
   },
   methods: {
     logout () {
-      this.$https.post('/api/auth/logout',{
+      axios.p('/api/auth/logout',{
         token: localStorage.getItem('accessToken')
       }).then((response) => {})
       // if user is logged in via auth0
       if (this.$auth.profile) this.$auth.logOut()
 
-      // if user is logged in via firebase
-      const firebaseCurrentUser = firebase.auth().currentUser
-
-      if (firebaseCurrentUser) {
-        firebase.auth().signOut().then(() => {
-          this.$router.push('/pages/login').catch(() => {})
-        })
-      }
       // If JWT login
       if (localStorage.getItem('accessToken')) {
         localStorage.removeItem('accessToken')

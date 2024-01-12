@@ -8,109 +8,114 @@ use Illuminate\Support\Facades\DB;
 
 class UtilityServiceProvider extends ServiceProvider
 {
-    public static function query($query, $print = false)
-    {
-        $resp = null;
-        $query = trim($query);
-        $upperQuery = strtoupper(substr($query, 0, 6));
-        if ($print) {
-            dd('\n-------------------------------------------------------------\n', $query, '\n-------------------------------------------------------------\n');
-        } else {
-            if ($upperQuery == ('SELECT')) {
-                $resp = DB::select(DB::raw($query));
-            } elseif ($upperQuery == ('INSERT')) {
-                $resp = DB::insert(DB::raw($query));
-            } elseif ($upperQuery == ('UPDATE')) {
-                $resp = DB::update(DB::raw($query));
-            } elseif ($upperQuery == ('DELETE')) {
-                $resp = DB::delete(DB::raw($query));
-            } else {
-                $resp = DB::statement(DB::raw($query));
-            }
-        }
-        return $resp;
-    }
-    public static function first($query, $print = false)
+	public static function query($query, $print = false)
+	{
+		$resp = null;
+		$query = trim($query);
+		$upperQuery = strtoupper(substr($query, 0, 6));
+		if ($print) {
+			dd('\n-------------------------------------------------------------\n', $query, '\n-------------------------------------------------------------\n');
+		} else {
+			if ($upperQuery == ('SELECT')) {
+				$resp = DB::select(DB::raw($query));
+			} elseif ($upperQuery == ('INSERT')) {
+				$resp = DB::insert(DB::raw($query));
+			} elseif ($upperQuery == ('UPDATE')) {
+				$resp = DB::update(DB::raw($query));
+			} elseif ($upperQuery == ('DELETE')) {
+				$resp = DB::delete(DB::raw($query));
+			} else {
+				$resp = DB::statement(DB::raw($query));
+			}
+		}
+		return $resp;
+	}
+	public static function first($query, $print = false)
 	{
 		$resp = self::query($query, $print);
 		return $resp && is_array($resp) && count($resp) >= 1 ? $resp[0] : $resp;
 	}
-    public static function getOne($query){
-	    $finalQuery = $query. " LIMIT 1";
-        $resp = DB::select(DB::raw($finalQuery));
-        return $resp && is_array($resp) && count($resp) >= 1 ? $resp[0] : $resp;
-    }
-    public static function getObject($array_input, $table, $order_by_key='', $order_by_desc=false) {
+	public static function getOne($query)
+	{
+		$finalQuery = $query . " LIMIT 1";
+		$resp = DB::select(DB::raw($finalQuery));
+		return $resp && is_array($resp) && count($resp) >= 1 ? $resp[0] : $resp;
+	}
+	public static function getObject($array_input, $table, $order_by_key = '', $order_by_desc = false)
+	{
 		$sub_sql = '1 ';
 		$sub_order = '';
-		foreach ( $array_input as $key => $value ) {
+		foreach ($array_input as $key => $value) {
 			$sub_sql .= " AND " . $key . "= :" . $key;
 		}
-		if($order_by_key!=''){
-			if($order_by_desc){
+		if ($order_by_key != '') {
+			if ($order_by_desc) {
 				$sub_order = " ORDER BY $order_by_key DESC";
-			}else{
+			} else {
 				$sub_order = " ORDER BY $order_by_key ASC";
 			}
 		}
 		$query = "SELECT * FROM " . $table . " WHERE " . $sub_sql . $sub_order . " LIMIT 1";
-		$resp = DB::select(DB::raw($query),$array_input);
+		$resp = DB::select(DB::raw($query), $array_input);
 		return $resp && is_array($resp) && count($resp) == 1 ? $resp[0] : $resp;
-    }
+	}
 
-	public static function getMultiObject($array_input, $table, $limit=0, $order_by_key='', $order_by_desc=false) {
+	public static function getMultiObject($array_input, $table, $limit = 0, $order_by_key = '', $order_by_desc = false)
+	{
 		$sub_sql = '1 ';
 		$sub_order = '';
 		$sub_limit = '';
-		foreach ( $array_input as $key => $value ) {
+		foreach ($array_input as $key => $value) {
 			$sub_sql .= " AND " . $key . "= :" . $key;
 		}
-		if($order_by_key!=''){
-			if($order_by_desc){
+		if ($order_by_key != '') {
+			if ($order_by_desc) {
 				$sub_order = " ORDER BY $order_by_key DESC";
-			}else{
+			} else {
 				$sub_order = " ORDER BY $order_by_key ASC";
 			}
 		}
-		if($limit){
+		if ($limit) {
 			$sub_limit = " LIMIT $limit";
 		}
 		$query = "SELECT * FROM " . $table . " WHERE " . $sub_sql . $sub_order . $sub_limit;
-		$resp = DB::select(DB::raw($query),$array_input);
-		return $resp ;
-    }
+		$resp = DB::select(DB::raw($query), $array_input);
+		return $resp;
+	}
 
-	public static function insertSimpleRow($arr_params, $table) {
+	public static function insertSimpleRow($arr_params, $table)
+	{
 		$field = "";
 		$field_value = "";
-		foreach ( $arr_params as $key => $value ) {
-			$field .= "`".$key . "`,";
+		foreach ($arr_params as $key => $value) {
+			$field .= "`" . $key . "`,";
 			$field_value .= ":" . $key . ",";
 		}
-		$field = rtrim ( $field, "," );
-		$field_value = rtrim ( $field_value, "," );
+		$field = rtrim($field, ",");
+		$field_value = rtrim($field_value, ",");
 		$sql = "INSERT IGNORE INTO " . $table . "(" . $field . ") VALUES (" . $field_value . ")";
-		$resp = DB::insert(DB::raw($sql),$arr_params);
+		$resp = DB::insert(DB::raw($sql), $arr_params);
 		return $resp ? DB::getPdo()->lastInsertId() : $resp;
-    }
+	}
 
-	public static function updateSimpleRow($arr_params, $arr_key, $table) {
+	public static function updateSimpleRow($arr_params, $arr_key, $table)
+	{
 		$set_clause = "";
 		$arr_binding = array();
-		foreach ( $arr_params as $key => $value ) {
-			$set_clause .= "`".$key . "`= :value_" . $key . ",";
-			$arr_binding['value_'.$key] = $value;
+		foreach ($arr_params as $key => $value) {
+			$set_clause .= "`" . $key . "`= :value_" . $key . ",";
+			$arr_binding['value_' . $key] = $value;
 		}
-		$set_clause = rtrim ( $set_clause, "," );
+		$set_clause = rtrim($set_clause, ",");
 
 		$sql_cond = '1=1';
-		foreach ( $arr_key as $key => $value ) {
+		foreach ($arr_key as $key => $value) {
 			$sql_cond .= ' AND ' . $key . "= :key_" . $key;
-			$arr_binding['key_'.$key] = $value;
+			$arr_binding['key_' . $key] = $value;
 		}
 		if ($set_clause != '') {
 			$sql = 'UPDATE ' . $table . ' SET ' . $set_clause . ' WHERE ' . $sql_cond;
-			$resp = DB::update(DB::raw($sql),$arr_binding);
+			$resp = DB::update(DB::raw($sql), $arr_binding);
 			return $resp;
 		}
 	}
@@ -129,7 +134,8 @@ class UtilityServiceProvider extends ServiceProvider
 		$data->paging = $pagination;
 		return $data;
 	}
-	public static function allLawType(){
+	public static function allLawType()
+	{
 		return [
 			'1' => [
 				'title' => 'Đất đai',
@@ -161,13 +167,15 @@ class UtilityServiceProvider extends ServiceProvider
 			],
 		];
 	}
-	public static function convertPhoneNumber($phone_number){
-		if(substr($phone_number, 0, 2) == '84'){
-			$phone_number = '0'+ substr($phone_number, 2, strlen($phone_number));
+	public static function convertPhoneNumber($phone_number)
+	{
+		if (substr($phone_number, 0, 2) == '84') {
+			$phone_number = '0' + substr($phone_number, 2, strlen($phone_number));
 		}
 		return $phone_number;
 	}
-	public static function transformUser($data){
+	public static function transformUser($data)
+	{
 		return array(
 			'displayName' => data_get($data, 'name'),
 			'name' => data_get($data, 'name'),
@@ -176,7 +184,10 @@ class UtilityServiceProvider extends ServiceProvider
 			'photoURL' => "/images/avatar-s-5.jpg?99691e543d9e33cf745f6ac56f5800b8",
 			'providerId' => "jwt",
 			'uid' => data_get($data, 'id'),
-			'address' => data_get($data, 'address')
+			'address' => data_get($data, 'address'),
+			'birthday' => data_get($data, 'birthday') ? date('d/m/Y', strtotime(data_get($data, 'birthday'))) : null,
+			'note' => data_get($data, 'note'),
+			'gender' => data_get($data, 'gender'),
 		);
 	}
 }

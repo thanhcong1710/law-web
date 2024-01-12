@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import http from './../../http/http.js'
+import axios from './../../http/axios.js'
 export default {
   data() {
     return {
@@ -86,7 +86,7 @@ export default {
   methods: {
     changePass() {
       this.$vs.loading();
-      http.post("/api/user/change-password", {
+      axios.p("/api/user/change-password", {
           old_password: this.old_password,
           new_password: this.new_password,
         })

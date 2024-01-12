@@ -17,7 +17,12 @@ class UserController extends Controller
         if ($data) {
             $arr_update = [];
             foreach ($data as $k => $item) {
-                $arr_update[$k] = $item;
+                if ($k == 'birthday') {
+                    $date = str_replace('/', '-', $item);
+                    $arr_update[$k] = date('Y-m-d', strtotime($date));
+                } else {
+                    $arr_update[$k] = $item;
+                }
             }
             u::updateSimpleRow($arr_update, array('id' => Auth::user()->id), 'users');
         }
@@ -25,14 +30,14 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 1,
-            'message' => 'Cập nhật thành công.', 
+            'message' => 'Cập nhật thành công.',
             'userData' => u::transformUser($uesr_info)
         ]);
     }
 
     public function changePassword(Request $request)
     {
-        if(password_verify($request->old_password, Auth::user()->password)){
+        if (password_verify($request->old_password, Auth::user()->password)) {
             u::updateSimpleRow(array(
                 'password' => Hash::make($request->new_password)
             ), array('id' => Auth::user()->id), 'users');
@@ -40,7 +45,7 @@ class UserController extends Controller
                 'status' => 1,
                 'message' => 'Đổi mật khẩu thành công.'
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => 0,
                 'message' => 'Mật khẩu cũ không chính xác.'

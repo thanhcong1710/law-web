@@ -1,26 +1,49 @@
-import Vue from 'vue'
-
 // axios
 import axios from 'axios'
-
-const axiosIns = axios.create({
-  // You can add your headers here
-  // ================================
-  baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 1000000,
-  headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+const g = (link, attributes = null) => new Promise((resolve, reject) => {
+  if (typeof link === 'string') {
+    axios.get(link,{
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+      },
+      params: attributes
+    }).then(response => {
+      resolve(response)
+    }).catch(e => {
+      processAuthen(e);
+    })
+  } else {
+    reject('Request url is not valid')
+  }
 })
+const p = (link, params = null) => new Promise((resolve, reject) => {
+  if (typeof link === 'string') {
+    axios.post(link,params,
+      {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }
+    )
+    .then(response => {
+      resolve(response)
+    }).catch(e => {
+      processAuthen(e);
+    })
+  } else {
+    reject('Request url is not valid')
+  }
+})
+function processAuthen(error) {
+  // console.log(error.response.headers);
+  try {
+      if (error.response.status == 401) {
+          window.location.href = '/pages/login';
+      }
+  } catch (err) {}
 
-axiosIns.interceptors.response.use(response => response,
-  error => {
-    if (error.response.status === 401) {
-      // alert('Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.')
-      // location.href = '/login'
-    } else {
-      return Promise.reject(error.response.data)
-    }
-  })
-
-Vue.prototype.$https = axiosIns
-
-export default axiosIns
+}
+export default {
+  g,
+  p
+}

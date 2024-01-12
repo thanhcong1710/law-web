@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import http from './../../http/http.js'
+import axios from './../../http/axios.js'
 export default {
   data () {
     return {
@@ -50,7 +50,7 @@ export default {
   methods: {
     updateUser(){
       this.$vs.loading()
-      http.post('/api/user/update-info', {
+      axios.p('/api/user/update-info', {
         data: { 
           'name' : this.name,
           'email' : this.email
@@ -62,7 +62,7 @@ export default {
         this.alert.show=true
         this.alert.status=response.data.status
         this.alert.message=response.data.message  
-        this.alert.color = response.data.status ? 'success' : 'warning'
+        this.alert.color = response.data.status ? 'success' : 'danger'
       })
       .catch((error)   => { console.log(error); this.$vs.loading.close(); })
     },
