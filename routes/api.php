@@ -36,6 +36,10 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::prefix('payment')->group(function () {
             Route::post('add', 'PaymentController@add');
         });
+        Route::prefix('user')->group(function () {
+            Route::post('update-info', 'UserController@updateInfo');
+            Route::post('change-password', 'UserController@changePassword');
+        });
         Route::post('payment', 'ApplicationController@demo');
     });
 });

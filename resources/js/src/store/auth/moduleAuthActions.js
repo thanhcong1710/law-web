@@ -301,7 +301,6 @@ export default {
 
   // JWT
   loginJWT ({ commit }, payload) {
-
     return new Promise((resolve, reject) => {
       jwt.login(payload.userDetails.phone, payload.userDetails.password)
         .then(response => {
@@ -318,7 +317,7 @@ export default {
             commit('UPDATE_USER_INFO', response.data.userData, {root: true})
 
             // Set bearer token in axios
-            commit('SET_BEARER', response.data.accessToken)
+            // commit('SET_BEARER', response.data.accessToken)
 
             resolve(response)
           } else {
@@ -348,6 +347,8 @@ export default {
           // Update data in localStorage
           localStorage.setItem('accessToken', response.data.accessToken)
           commit('UPDATE_USER_INFO', response.data.userData, {root: true})
+          // Set bearer token in axios
+          // commit('SET_BEARER', response.data.accessToken)
 
           resolve(response)
         })

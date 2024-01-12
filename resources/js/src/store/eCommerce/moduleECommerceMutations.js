@@ -25,6 +25,9 @@ export default {
   },
   UPDATE_ITEM_QUANTITY (state, payload) {
     state.cartItems[payload.index].quantity = payload.quantity
+  },
+  REMOVE_ALL_CART (state) {
+    state.cartItems = []
   }
 }
 

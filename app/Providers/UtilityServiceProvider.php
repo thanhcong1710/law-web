@@ -167,4 +167,16 @@ class UtilityServiceProvider extends ServiceProvider
 		}
 		return $phone_number;
 	}
+	public static function transformUser($data){
+		return array(
+			'displayName' => data_get($data, 'name'),
+			'name' => data_get($data, 'name'),
+			'email' =>  data_get($data, 'email'),
+			'phone' => data_get($data, 'phone'),
+			'photoURL' => "/images/avatar-s-5.jpg?99691e543d9e33cf745f6ac56f5800b8",
+			'providerId' => "jwt",
+			'uid' => data_get($data, 'id'),
+			'address' => data_get($data, 'address')
+		);
+	}
 }

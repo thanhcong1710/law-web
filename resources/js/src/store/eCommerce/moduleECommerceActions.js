@@ -27,5 +27,8 @@ export default {
   },
   updateItemQuantity ({ commit }, payload) {
     commit('UPDATE_ITEM_QUANTITY', payload)
+  },
+  removeAllCart({ commit }){
+    commit('REMOVE_ALL_CART')
   }
 }

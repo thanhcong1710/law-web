@@ -8,7 +8,7 @@
           <template v-if="cartItems.length">
               <div class="notification-header text-center p-5 bg-primary text-white">
                   <h3 class="text-white">{{ cartItems.length }} Item<span v-show="cartItems.length > 1">s</span></h3>
-                  <p class="opacity-75">In Your Cart</p>
+                  <!-- <p class="opacity-75">In Your Cart</p> -->
               </div>
 
               <!-- CART ITEMS -->
@@ -22,15 +22,14 @@
 
                       <!-- IMG COL -->
                       <div class="vx-col w-1/5 item-img-container bg-white flex items-center justify-center">
-                          <img :src="item.image" alt="item" class="cart-dropdown-item-img p-4">
+                          <img :src="item.image_url" alt="item" class="cart-dropdown-item-img p-4">
                       </div>
 
                       <!-- INFO COL -->
                       <div class="vx-col w-4/5 pr-4 pl-2 py-4 flex flex-col justify-center">
                           <span class="font-medium block cart-item-title truncate">{{ item.name }}</span>
-                          <small class="truncate mb-2">{{ item.description }}</small>
                           <div class="flex items-center justify-between">
-                              <span class="text-sm font-medium">{{ item.quantity }} <small>x</small> ${{ item.price }}</span>
+                              <span class="text-sm font-medium"> {{ item.price | formatCurrency }}</span>
                               <feather-icon icon="XIcon" svgClasses="h-4 w-4 cursor-pointer text-danger" class="hover:text-danger" @click.stop="removeItemFromCart(item)" />
                           </div>
                       </div>
@@ -39,7 +38,7 @@
               </component>
               <div
                 class=" checkout-footer fixed bottom-0 rounded-b-lg text-primary font-semibold w-full p-2 text-center border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light cursor-pointer"
-                @click="$router.push('/apps/eCommerce/checkout').catch(() => {})">
+                @click="$router.push('/law/checkout').catch(() => {})">
 
                 <span class="flex items-center justify-center">
                   <feather-icon icon="ShoppingCartIcon" svgClasses="h-4 w-4" />

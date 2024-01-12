@@ -102,11 +102,13 @@ class AuthController extends Controller
             'accessToken' => $token,
             'userData' => [
                 'displayName' => auth()->user()->name,
+                'name' => auth()->user()->name,
                 'email' => auth()->user()->email,
                 'phone' => auth()->user()->phone,
                 'photoURL' => "/images/avatar-s-5.jpg?99691e543d9e33cf745f6ac56f5800b8",
                 'providerId' => "jwt",
-                'uid' => auth()->user()->id
+                'uid' => auth()->user()->id,
+                'address' =>  auth()->user()->address,
             ]
         ]);
     }

@@ -298,6 +298,7 @@ export default {
       this.$store.dispatch('eCommerce/updateItemQuantity', { quantity: event, index: itemIndex })
     },
     addOrder(){
+      this.$store.dispatch('eCommerce/removeAllCart')
       if(this.activeUserInfo.displayName){
         this.$vs.loading()
         this.$http.post('/api/payment/add', { 'cartItems' : this.cartItems })

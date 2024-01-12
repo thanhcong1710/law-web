@@ -90,6 +90,33 @@ const router = new Router({
             rule: 'editor'
           }
         },
+        {
+          path: '/user/wish-list',
+          name: 'user-wish-list',
+          component: () => import('./views/users/WishList.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Tài khoản', url:'/user/profile'},
+              { title: 'Ưa thích', active: true }
+            ],
+            pageTitle: 'Ưa thích',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/user/profile',
+          name: 'user-profile',
+          component: () => import('@/views/users/UserSettings.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Tài khoản', active: true }
+            ],
+            pageTitle: 'Tài khoản',
+            rule: 'editor'
+          }
+        },
 
 
         // =============================================================================
@@ -901,20 +928,7 @@ const router = new Router({
         // =============================================================================
         // Pages Routes
         // =============================================================================
-        {
-          path: '/pages/profile',
-          name: 'page-profile',
-          component: () => import('@/views/pages/Profile.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'Profile', active: true }
-            ],
-            pageTitle: 'Profile',
-            rule: 'editor'
-          }
-        },
+        
         {
           path: '/pages/user-settings',
           name: 'page-user-settings',
