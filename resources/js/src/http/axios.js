@@ -38,6 +38,8 @@ function processAuthen(error) {
   // console.log(error.response.headers);
   try {
       if (error.response.status == 401) {
+          localStorage.removeItem('accessToken')
+          localStorage.removeItem('userInfo')
           window.location.href = '/pages/login';
       }
   } catch (err) {}

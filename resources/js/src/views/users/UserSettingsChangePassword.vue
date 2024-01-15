@@ -108,7 +108,7 @@ export default {
       this.confirm_new_password = "";
     },
     logout () {
-      http.post('/api/auth/logout',{
+      axios.p('/api/auth/logout',{
         token: localStorage.getItem('accessToken')
       }).then((response) => {})
       // if user is logged in via auth0

@@ -118,6 +118,21 @@ const router = new Router({
           }
         },
 
+        {
+          path: '/user/payments',
+          name: 'user-payments',
+          component: () => import('@/views/users/PaymentListView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Tài khoản', url:'/user/profile'},
+              { title: 'Thanh toán', active: true }
+            ],
+            pageTitle: 'Thanh toán',
+            rule: 'editor'
+          }
+        },
+
 
         // =============================================================================
         // Application Routes

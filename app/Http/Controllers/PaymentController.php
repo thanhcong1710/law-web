@@ -40,4 +40,33 @@ class PaymentController extends Controller
 
         return response()->json("ok");
     }
+
+    public function list(Request $request)
+    {
+        $keyword = isset($request->keyword) ? $request->keyword : '';
+        $status = isset($request->status) ? $request->status : '-1';
+        $pagination = (object)$request->pagination;
+        $page = isset($pagination->cpage) ? (int) $pagination->cpage : 1;
+        $limit = isset($pagination->limit) ? (int) $pagination->limit : 20;
+        $offset = $page == 1 ? 0 : $limit * ($page - 1);
+        $limitation =  $limit > 0 ? " LIMIT $offset, $limit" : "";
+        $cond = " p.status >= 0 ";
+        if ($status != '-1') {
+            $cond .= " AND p.status = $status ";
+        }
+        $total = u::first("SELECT count(id) AS total FROM payments AS p WHERE $cond ");
+        $list = u::query("SELECT p.*
+            FROM payments AS p WHERE $cond ORDER BY p.id DESC $limitation");
+        $data = u::makingPagination($list, $total->total, $page, $limit);
+        return response()->json($data);
+    }
+
+    public function delete(Request $request){
+        $data = u::updateSimpleRow(array(
+            'status' => -1,
+            'updated_at'=> date('Y-m-d H:i:s'),
+            'updator_id'=> Auth::user()->id
+        ), array('id'=>$request->payment_id),'payments');
+        return response()->json($data);
+    }
 }
