@@ -23,13 +23,13 @@
           </li>
           <li
             class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/todo').catch(() => {})">
+            @click="$router.push('/user/products').catch(() => {})">
             <feather-icon icon="PackageIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Sản phẩm</span>
           </li>
           <li
             class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/todo').catch(() => {})">
+            @click="$router.push('/user/payments').catch(() => {})">
             <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Thanh toán</span>
           </li>

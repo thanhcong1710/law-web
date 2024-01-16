@@ -133,7 +133,20 @@ const router = new Router({
           }
         },
 
-
+        {
+          path: '/user/products',
+          name: 'user-products',
+          component: () => import('@/views/users/ProductList.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Tài khoản', url:'/user/profile'},
+              { title: 'Sản phẩm', active: true }
+            ],
+            pageTitle: 'Sản phẩm',
+            rule: 'editor'
+          }
+        },
         // =============================================================================
         // Application Routes
         // =============================================================================

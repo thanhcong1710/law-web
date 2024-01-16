@@ -37,6 +37,7 @@ Route::group(['middleware' => 'api'], function ($router) {
             Route::post('add', 'PaymentController@add');
             Route::post('list', 'PaymentController@list');
             Route::post('delete', 'PaymentController@delete');
+            Route::post('items', 'PaymentController@items');
         });
         Route::prefix('user')->group(function () {
             Route::post('update-info', 'UserController@updateInfo');

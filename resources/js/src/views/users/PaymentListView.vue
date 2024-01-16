@@ -24,24 +24,15 @@
             </div>
             <!-- <vs-button class="btn-drop" type="line" color="primary" icon-pack="feather" icon="icon-chevron-down"></vs-button> -->
             <vs-dropdown-menu>
-              <vs-dropdown-item @click="changePageLimit(10)">
-                <span>10</span>
-              </vs-dropdown-item>
-              <vs-dropdown-item @click="changePageLimit(20)">
-                <span>20</span>
-              </vs-dropdown-item>
-              <vs-dropdown-item @click="changePageLimit(25)">
-                <span>25</span>
-              </vs-dropdown-item>
-              <vs-dropdown-item @click="changePageLimit(30)">
-                <span>30</span>
+              <vs-dropdown-item  v-for="item in limitSource" :key="item" @click="changePageLimit(item)">
+                <span>{{item}}</span>
               </vs-dropdown-item>
             </vs-dropdown-menu>
           </vs-dropdown>
         </div>
 
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
-          <vs-input class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery.keyword" @input="searchData('keyword')" placeholder="Search..." />
+          <!-- <vs-input class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery.keyword" @input="searchData('keyword')" placeholder="Search..." /> -->
           <!-- <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button> -->
 
           <!-- ACTION - DROPDOWN -->
@@ -101,7 +92,7 @@ export default {
     return {
 
       statusOptions: [
-        { label: 'Tất cả', value: '-1' },
+        { label: 'Chọn trạng thái', value: '-1' },
         { label: 'Chờ thanh toán', value: '0' },
         { label: 'Đã chuyển tiền', value: '1' },
         { label: 'Hoàn thành', value: '2' }
@@ -109,7 +100,7 @@ export default {
 
       searchQuery: {
         keyword: '',
-        status: { label: 'Tất cả', value: '-1' },
+        status: {  label: 'Chọn trạng thái', value: '-1' },
       },
 
       // AgGrid
@@ -167,8 +158,9 @@ export default {
         CellRendererActions,
       },
       paymentsData:[],
+      limitSource: [10, 20, 30, 40, 50],  
       pagination: {
-        url: "/api/users/list",
+        url: "/api/payment/list",
         id: "",
         style: "line",
         class: "",
@@ -179,7 +171,6 @@ export default {
         cpage: 1,
         total: 0,
         limit: 10,
-        limitSource: [10, 20, 30, 40, 50],
         pages: [],
         init:0
       },
