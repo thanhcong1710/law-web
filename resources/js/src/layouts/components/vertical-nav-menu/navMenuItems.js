@@ -21,11 +21,11 @@
 
 export default [
   {
-    url: null,
+    url: '/law/list',
     name: 'Tìm luật sư',
-    tag: '2',
+    tag: '3',
     tagColor: 'warning',
-    icon: 'HomeIcon',
+    icon: 'SearchIcon',
     submenu: [
       {
         url: '/#',
@@ -36,45 +36,33 @@ export default [
         url: '/#',
         name: 'Dân sự',
         slug: 'dashboard-ecommerce',
-      }
-    ]
-  },
-  {
-    url: null,
-    name: 'Tư vấn pháp luật',
-    tag: '3',
-    tagColor: 'warning',
-    icon: 'PackageIcon',
-    submenu: [
-      {
-        url: '/apps/email',
-        name: 'Bài viết pháp luật',
-        slug: 'email',
-        icon: 'MailIcon',
       },
       {
-        url: '/apps/chat',
-        name: 'Câu hỏi pháp luật',
-        slug: 'chat',
-        icon: 'MessageSquareIcon'
-      },
-      {
-        url: '/apps/todo',
-        name: 'Biểu mẫu',
-        slug: 'todo',
-        icon: 'CheckSquareIcon'
+        url: '/#',
+        name: 'Đất đai',
+        slug: 'dashboard-ecommerce',
       }
     ]
-  },
-  {
-    url: '/law/list',
-    name: 'Dịch vụ pháp lý',
-    icon: 'PackageIcon',
   },
   {
     url: '/#',
-    name: 'Đặt câu hỏi miễn phí',
-    icon: 'PackageIcon',
+    name: 'Bảng phí',
+    icon: 'DollarSignIcon',
+  },
+  {
+    url: '/#',
+    name: 'Dịch vụ pháp lý',
+    icon: 'KeyIcon',
+  },
+  {
+    url: '/#',
+    name: 'Chính sách bảo mật',
+    icon: 'BookOpenIcon',
+  },
+  {
+    url: '/#',
+    name: 'Liên hệ',
+    icon: 'InfoIcon',
   }
 ]
 

@@ -49,6 +49,7 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::post('payment', 'ApplicationController@demo');
         Route::prefix('video-call')->group(function () {
             Route::post('create', 'VideoCallController@create');
+            Route::post('join', 'VideoCallController@join');
         });
     });
 });

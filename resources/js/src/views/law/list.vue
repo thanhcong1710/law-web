@@ -24,9 +24,7 @@
                     <p class="lg:inline-flex hidden font-semibold algolia-filters-label">Filters</p>
 
                     <div class="flex justify-between items-end flex-grow">
-                        <div class="ais-Stats"><p class="font-semibold md:block hidden">
-                            21469 results found in 11ms
-                        </p></div>
+                        <div class="ais-Stats"></div>
 
                         <div class="flex flex-wrap">
 
@@ -57,43 +55,125 @@
                     v-model="isFilterSidebarActive">
 
                     <div class="p-6 filter-container">
-
+                      <h6 class="font-bold mb-3">Tỉnh/Thành Phố</h6>
                       <div class="multi-range-price">
-                                    <h6 class="filter-title mt-0">Multi Range</h6>
-                                    <ul class="list-unstyled price-range" id="price-range">
-                                        <li>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="priceAll" name="price-range" class="custom-control-input" checked />
-                                                <label class="custom-control-label" for="priceAll">All</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="priceRange1" name="price-range" class="custom-control-input" />
-                                                <label class="custom-control-label" for="priceRange1">&lt;=$10</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="priceRange2" name="price-range" class="custom-control-input" />
-                                                <label class="custom-control-label" for="priceRange2">$10 - $100</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="priceARange3" name="price-range" class="custom-control-input" />
-                                                <label class="custom-control-label" for="priceARange3">$100 - $500</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="priceRange4" name="price-range" class="custom-control-input" />
-                                                <label class="custom-control-label" for="priceRange4">&gt;= $500</label>
-                                            </div>
-                                        </li>
-                                    </ul>
+                        <ul class="list-unstyled price-range" id="price-range">
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceAll" name="price-range" class="custom-control-input" checked />
+                                    <label class="custom-control-label" for="priceAll">Tất cả</label>
                                 </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange1" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange1">Hà Nội</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange2" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange2">Hồ Chí Minh</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceARange3" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceARange3">Đà Nẵng</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange4" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange4">Hải Phòng</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange4" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange4">Thái Nguyên</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange4" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange4">Nghệ An</label>
+                                </div>
+                            </li>
+                            <li class="flex items-center cursor-pointer py-1">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="priceRange4" name="price-range" class="custom-control-input" />
+                                    <label class="custom-control-label" for="priceRange4">Phú Thọ</label>
+                                </div>
+                            </li>
+                        </ul>
+                      </div>
+                      <vs-divider />
+                      <h6 class="font-bold mb-3">Lĩnh Vực</h6>
+                      <div class="ais-RefinementList">
+                        <div>
+                            <ul>
+                                <!---->
+                                <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Tất cả</span></div> <span>1746</span>
+                                </li>
+                                <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Đất đai</span></div> <span>746</span>
+                                </li>
+                                <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Bảo hiểm</span></div> <span>633</span>
+                                </li>
+                                <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Doanh nghiệp</span></div> <span>591</span>
+                                </li>
+                                 <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Hình sự</span></div> <span>523</span>
+                                </li>
+                                <li class="mb-2 flex items-center justify-between">
+                                    <div class="vs-component con-vs-checkbox ml-0 vs-checkbox-primary vs-checkbox-default"><input
+                                            type="checkbox" class="vs-checkbox--input" value="false"><span class="checkbox_x vs-checkbox"
+                                            style="border: 2px solid rgb(180, 180, 180);"><span class="vs-checkbox--check"><i
+                                                    class="vs-icon notranslate icon-scale vs-checkbox--icon  material-icons null">check</i></span></span><span
+                                            class="con-slot-label">Hôn nhân gia đình</span></div> <span>625</span>
+                                </li>
+                            </ul>
+                        </div>
                         <vs-divider />
+                        <h6 class="font-bold mb-3">Đánh giá</h6>
+                        <div attribute="rating">
+                            <ul>
+                                <li v-for="item in itemsRate" :key="item" class="mb-2">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center flex-wrap">
+                                            <feather-icon icon="StarIcon" :svgClasses="[{'text-warning': index<=item, 'text-grey': !index<=item, 'ml-1' : index}, 'cursor-pointer stroke-current h-6 w-6']" v-for="index in [1,2,3,4,5]" :key="index" />
+                                            <span class="ml-2">&amp; up</span>
+                                        </div>
+                                        <span>(200)</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
                     </div>
                 </vs-sidebar>
 
@@ -199,7 +279,6 @@
 </template>
 
 <script>
-
 export default {
   components: {
     ItemGridView: () => import('./components/ItemGridView.vue'),
@@ -212,7 +291,8 @@ export default {
       clickNotClose: true,
       currentItemView: 'item-grid-view',
       listItem: [],
-      keyword:''
+      keyword:'',
+      itemsRate:[5,4,3,2,1]
     }
   },
   computed: {

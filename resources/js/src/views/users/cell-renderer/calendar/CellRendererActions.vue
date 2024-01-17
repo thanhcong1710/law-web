@@ -18,8 +18,18 @@ export default {
       axios.p('/api/video-call/create',{
         law_schedule_id: this.params.data.id
       }).then((response) => {
-        window.open(response.data.redirect_url, "_blank")
-      })
+        if(response.data.status==1){
+          window.open(response.data.redirect_url, "_blank")
+        }else{
+          this.$vs.notify({
+            title: 'Lỗi',
+            text: response.data.message,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+        }
+      }) .catch((error)   => { console.log(error); this.$vs.loading.close(); })
     },
     confirmDelete (id) {
       this.$vs.dialog({

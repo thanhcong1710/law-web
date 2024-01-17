@@ -14,7 +14,7 @@
                         </div>
                         <div class="flex flex-wrap mt-3">
                             <!-- SECONDARY BUTTON: MOVE TO CART -->
-                            <div v-if="item.status==1 && item.law_schedule_id" class="item-view-secondary-action-btn bg-success p-3 flex flex-grow items-center justify-center text-white cursor-pointer" >
+                            <div v-if="item.status==1 && item.law_schedule_id" @click="joinMeeting(item.id)" class="item-view-secondary-action-btn bg-success p-3 flex flex-grow items-center justify-center text-white cursor-pointer" >
                                 <feather-icon icon="ShoppingBagIcon" svgClasses="h-4 w-4" />
 
                                 <span class="text-sm font-semibold ml-2" >TRAO ĐỔI ONLINE</span>
@@ -93,6 +93,23 @@ export default {
         this.pagination.init = 1;
       })
       .catch((error)   => { console.log(error); this.$vs.loading.close(); })
+    },
+    joinMeeting(payment_item_id){
+      axios.p('/api/video-call/join',{
+        payment_item_id: payment_item_id
+      }).then((response) => {
+        if(response.data.status==1){
+          window.open(response.data.redirect_url, "_blank")
+        }else{
+          this.$vs.notify({
+            title: 'Lỗi',
+            text: response.data.message,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+        }
+      }) .catch((error)   => { console.log(error); this.$vs.loading.close(); })
     },
     changePage(){
       if(this.pagination.init){

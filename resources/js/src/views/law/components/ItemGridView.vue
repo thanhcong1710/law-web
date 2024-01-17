@@ -33,6 +33,13 @@
                             <h6 class="truncate font-semibold mb-1 hover:text-primary cursor-pointer" @click="navigate_to_detail_view">{{ item.name }}</h6>
                             <p class="item-description truncate text-sm">{{ item.intro_text }}</p>
                         </div>
+                        <div class="my-4">
+                            <vs-button color="primary" type="border" style="width:80px; padding:5px; margin:3px 0px">T4-08h</vs-button>
+                            <vs-button color="primary" type="border" style="width:80px; padding:5px; margin:3px 0px">T4-14h</vs-button>
+                            <vs-button color="primary" type="border" style="width:80px; padding:5px; margin:3px 0px">T5-09h</vs-button>
+                            <vs-button color="primary" type="border" style="width:80px; padding:5px; margin:3px 0px">T5-20h</vs-button>
+                            <vs-button color="primary" type="border" style="width:80px; padding:5px; margin:3px 0px">CN-08h</vs-button>
+                        </div>
                     </div>
 
                     <!-- SLOT: ACTION BUTTONS -->

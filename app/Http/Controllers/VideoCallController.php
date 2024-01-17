@@ -64,100 +64,24 @@ class VideoCallController extends Controller
         return response()->json($result);
     }
 
-    public function joinRoom(Request $request)
+    public function join(Request $request)
     {
+        $payment_item_id = $request->payment_item_id;
+        $metting_info = u::first("SELECT s.meeting_id, s.moderator_password FROM payment_items AS p LEFT JOIN law_schedules AS s ON s.id= p.law_schedule_id WHERE p.id=$payment_item_id");
         $bbb = new BigBlueButton();
-        $meetingID = 'demo4';
-        $name = 'conglt';
-        $password = '123456';
+        $meetingID = data_get($metting_info, 'meeting_id');
+        $name = Auth::user()->name;
+        $password = data_get($metting_info, 'moderator_password');
 
         $joinMeetingParams = new JoinMeetingParameters($meetingID, $name, $password);
         $joinMeetingParams->setRedirect(true);
         $url = $bbb->getJoinMeetingURL($joinMeetingParams);
-        var_dump($url);
-        die();
-        return response()->json("ok");
+        $result = array(
+            'status' => 1,
+            'message' => 'ok',
+            'redirect_url' => $url
+        );
+        return response()->json($result);
     }
 
-    public function endRoom(Request $request)
-    {
-        $bbb = new BigBlueButton();
-        $meetingID = 'demo4';
-        $moderator_password = 'acbd1234';
-
-        $endMeetingParams = new EndMeetingParameters($meetingID, $moderator_password);
-        $response = $bbb->endMeeting($endMeetingParams);
-        var_dump($response);die();
-        return response()->json("ok");
-    }
-
-    public function getRoomInfo()
-    {
-        $bbb = new BigBlueButton();
-        $meetingID = 'demo4';
-        $moderator_password = 'acbd1234';
-
-        $getMeetingInfoParams = new GetMeetingInfoParameters($meetingID, $moderator_password);
-        $response = $bbb->getMeetingInfo($getMeetingInfoParams);
-        var_dump($response);
-        die();
-        if ($response->getReturnCode() == 'FAILED') {
-            // meeting not found or already closed
-        } else {
-            var_dump($response);
-            die();
-        }
-        return response()->json("ok");
-    }
-
-    public function getListRoom()
-    {
-        $bbb = new BigBlueButton();
-        $response = $bbb->getMeetings();
-        if ($response->getReturnCode() == 'SUCCESS') {
-            foreach ($response->getRawXml()->meetings->meeting as $meeting) {
-                // process all meeting
-                var_dump($meeting);die();
-            }
-        }
-        return response()->json("ok");
-    }
-
-    public function getRecords()
-    {
-        $recordingParams = new GetRecordingsParameters();
-        $bbb = new BigBlueButton();
-        $response = $bbb->getRecordings($recordingParams);
-
-        if ($response->getReturnCode() == 'SUCCESS') {
-            foreach ($response->getRawXml()->recordings->recording as $recording) {
-                $recording = (object)$this->xml2array($recording);
-                // process all recording
-                var_dump($recording->meetingID);die();
-            }
-        }
-        return response()->json("ok");
-    }
-
-    public function deleteRecord()
-    {
-        $recordingID = 'demo4';
-        $bbb = new BigBlueButton();
-        $deleteRecordingsParams= new DeleteRecordingsParameters($recordingID); // get from "Get Recordings"
-        $response = $bbb->deleteRecordings($deleteRecordingsParams);
-
-        if ($response->getReturnCode() == 'SUCCESS') {
-            // recording deleted
-        } else {
-            // something wrong
-        }
-    }
-    
-    private function xml2array ( $xmlObject, $out = array () )
-    {
-        foreach ( (array) $xmlObject as $index => $node )
-            $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
-    
-        return $out;
-    }
 }
