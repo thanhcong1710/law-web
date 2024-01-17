@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="mb-10 text-center">
+      <a @click="changeDemo(1)" class="mr-3">Guest</a> |
+      <a @click="changeDemo(2)" class="ml-3">Lawer</a>
+    </div>
     <vs-input
         v-validate="{ required: true, regex: /(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})\b/g }"
         data-vv-validate-on="blur"
@@ -40,7 +44,7 @@
 export default {
   data () {
     return {
-      phone: '0389941902',
+      phone: '0389941903',
       password: 'abcd1234',
       checkbox_remember_me: false
     }
@@ -51,6 +55,15 @@ export default {
     }
   },
   methods: {
+    changeDemo(type){
+      if(type==1){
+        this.phone= '0389941903'
+        this.password= 'abcd1234'
+      }else if(type==2){
+        this.phone= '0389941904'
+        this.password= 'abcd1234'
+      }
+    },
     checkLogin () {
       // If user is already logged in notify
       if (this.$store.state.auth.isUserLoggedIn()) {
