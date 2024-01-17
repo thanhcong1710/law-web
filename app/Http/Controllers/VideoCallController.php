@@ -25,7 +25,7 @@ class VideoCallController extends Controller
         $meetingName = 'LAW TECH';
         $attendee_password = 'attendee_'.uniqid();
         $moderator_password = 'moderator_'.uniqid();
-        $duration = 3600;
+        $duration = 0;
         $urlLogout = 'https://law.dapanh.com/';
         $isRecordingTrue = true;
 
