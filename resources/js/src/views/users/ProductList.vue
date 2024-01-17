@@ -94,9 +94,9 @@ export default {
       })
       .catch((error)   => { console.log(error); this.$vs.loading.close(); })
     },
-    joinMeeting(payment_item_id){
+    joinMeeting(law_schedule_id){
       axios.p('/api/video-call/join',{
-        payment_item_id: payment_item_id
+        law_schedule_id: law_schedule_id
       }).then((response) => {
         if(response.data.status==1){
           window.open(response.data.redirect_url, "_blank")
