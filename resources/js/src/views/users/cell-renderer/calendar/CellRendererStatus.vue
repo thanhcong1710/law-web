@@ -10,9 +10,8 @@ export default {
   computed: {
     chipColor () {
       return (value) => {
-        console.log(value);
         if (value == '2') return 'success'
-        // else if (value === 'blocked') return 'danger'
+        // else if (value == 'blocked') return 'danger'
         else if (value == '1') return 'warning'
         else return 'primary'
       }
@@ -20,9 +19,9 @@ export default {
     titleStatus () {
       return (value) => {
         if (value == '2') return 'Hoàn thành'
-        // else if (value === 'blocked') return 'danger'
-        else if (value == '1') return 'Đã chuyển tiền'
-        else return 'Chờ thanh toán'
+        // else if (value == 'blocked') return 'danger'
+        else if (value == '1') return 'Đã xếp lịch'
+        else return 'Lịch chống'
       }
     }
   }

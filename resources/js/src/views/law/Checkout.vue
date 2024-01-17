@@ -232,6 +232,7 @@ import { FormWizard, TabContent } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import RegisterJwt from './../pages/register/RegisterJWT.vue'
 const ItemListView = () => import('./components/ItemListView.vue')
+import axios from './../../http/axios.js'
 import router from '@/router'
 
 export default {
@@ -301,7 +302,7 @@ export default {
       this.$store.dispatch('eCommerce/removeAllCart')
       if(this.activeUserInfo.displayName){
         this.$vs.loading()
-        this.$http.post('/api/payment/add', { 'cartItems' : this.cartItems })
+        axios.p('/api/payment/add', { 'cartItems' : this.cartItems })
         .then((response) => {  
           this.$refs.checkoutWizard.nextTab(); 
           this.$vs.loading.close()

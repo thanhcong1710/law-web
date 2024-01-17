@@ -42,7 +42,13 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::prefix('user')->group(function () {
             Route::post('update-info', 'UserController@updateInfo');
             Route::post('change-password', 'UserController@changePassword');
+            Route::post('law-schedules', 'UserController@lawSchedules');
+            Route::post('law-schedules/add', 'UserController@addLawSchedules');
+            Route::post('law-schedules/delete', 'UserController@deleteLawSchedules');
         });
         Route::post('payment', 'ApplicationController@demo');
+        Route::prefix('video-call')->group(function () {
+            Route::post('create', 'VideoCallController@create');
+        });
     });
 });

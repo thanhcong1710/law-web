@@ -147,6 +147,21 @@ const router = new Router({
             rule: 'editor'
           }
         },
+
+        {
+          path: '/user/calendar',
+          name: 'user-calendar',
+          component: () => import('@/views/users/Calendar.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Tài khoản', url:'/user/profile'},
+              { title: 'Đặt lịch', active: true }
+            ],
+            pageTitle: 'Đặt lịch',
+            rule: 'editor'
+          }
+        },
         // =============================================================================
         // Application Routes
         // =============================================================================
