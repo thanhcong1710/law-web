@@ -36,7 +36,7 @@
 
         <!-- IF NO ITEMS IN CART -->
         <vx-card title="You don't have any items in your wish list." v-else>
-            <vs-button @click="$router.push('/apps/eCommerce/shop').catch(() => {})">Browse Shop</vs-button>
+            <vs-button @click="$router.push('/law/list').catch(() => {})">Browse Shop</vs-button>
         </vx-card>
   </div>
 </template>
