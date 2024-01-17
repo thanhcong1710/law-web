@@ -299,12 +299,12 @@ export default {
       this.$store.dispatch('eCommerce/updateItemQuantity', { quantity: event, index: itemIndex })
     },
     addOrder(){
-      this.$store.dispatch('eCommerce/removeAllCart')
       if(this.activeUserInfo.displayName){
         this.$vs.loading()
         axios.p('/api/payment/add', { 'cartItems' : this.cartItems })
         .then((response) => {  
           this.$refs.checkoutWizard.nextTab(); 
+          this.$store.dispatch('eCommerce/removeAllCart')
           this.$vs.loading.close()
         })
         .catch((error)   => { console.log(error); this.$vs.loading.close(); })

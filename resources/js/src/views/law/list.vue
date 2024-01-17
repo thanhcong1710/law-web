@@ -335,7 +335,6 @@ export default {
       this.$store.dispatch('eCommerce/toggleItemInWishList', item)
     },
     additemInCart (item) {
-      console.log(item);
       this.$store.dispatch('eCommerce/additemInCart', item)
     },
     cartButtonClicked (item) {
