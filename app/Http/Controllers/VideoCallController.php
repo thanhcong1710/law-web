@@ -71,7 +71,7 @@ class VideoCallController extends Controller
         $bbb = new BigBlueButton();
         $meetingID = data_get($metting_info, 'meeting_id');
         $name = Auth::user()->name;
-        $password = data_get($metting_info, 'moderator_password');
+        $password = data_get($metting_info, 'attendee_password');
 
         $joinMeetingParams = new JoinMeetingParameters($meetingID, $name, $password);
         $joinMeetingParams->setRedirect(true);
