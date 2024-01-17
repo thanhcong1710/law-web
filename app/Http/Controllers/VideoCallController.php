@@ -67,7 +67,7 @@ class VideoCallController extends Controller
     public function join(Request $request)
     {
         $law_schedule_id = $request->law_schedule_id;
-        $metting_info = u::first("SELECT s.meeting_id, s.moderator_password FROM law_schedules AS s WHERE s.id=$law_schedule_id");
+        $metting_info = u::first("SELECT s.meeting_id, s.attendee_password FROM law_schedules AS s WHERE s.id=$law_schedule_id");
         $bbb = new BigBlueButton();
         $meetingID = data_get($metting_info, 'meeting_id');
         $name = Auth::user()->name;
