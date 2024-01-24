@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'api'], function ($router) {
+    Route::post('webhook', 'BigBluButtonController@webhook');
     Route::get('bbb/create', 'BigBluButtonController@createRoom');
     Route::get('bbb/join', 'BigBluButtonController@joinRoom');
     Route::get('bbb/info', 'BigBluButtonController@getRoomInfo');
