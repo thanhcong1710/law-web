@@ -13,6 +13,7 @@ use BigBlueButton\Parameters\GetMeetingInfoParameters;
 use BigBlueButton\Parameters\GetRecordingsParameters;
 use BigBlueButton\Parameters\DeleteRecordingsParameters;
 use BigBlueButton\Parameters\EndMeetingParameters;
+use Illuminate\Support\Facades\Log;
 
 class BigBluButtonController extends Controller
 {
@@ -143,5 +144,11 @@ class BigBluButtonController extends Controller
             $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
     
         return $out;
+    }
+
+    public function webhook(Request $request){
+        $params = $request->input();
+        Log::info("message webhook", ['params'=>$params]);
+        return "ok";
     }
 }
