@@ -8,6 +8,7 @@
         <vs-button class="mr-4 sm:mb-0 mb-2">Upload photo</vs-button>
         <vs-button type="border" color="danger">Remove</vs-button>
         <p class="text-sm mt-2">Allowed JPG, GIF or PNG. Max size of 800kB</p>
+        <input type="file" ref="file" multiple="multiple" @change="submitFiles">
       </div>
     </div>
 
@@ -48,6 +49,24 @@ export default {
     }
   },
   methods: {
+    submitFiles() {
+        if(this.$refs.file.files.length){
+          this.$vs.loading()
+          const formData = new FormData();
+          for (var i = 0; i < this.$refs.file.files.length; i++) {
+            let file = this.$refs.file.files[i];
+            formData.append('files[' + i + ']', file);
+          }
+          axios.p('/api/user/upload-file', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            }).then((response) => {  
+              this.$vs.loading.close()
+            })
+          .catch((error)   => { console.log(error); this.$vs.loading.close(); })
+        }
+      },
     updateUser(){
       this.$vs.loading()
       axios.p('/api/user/update-info', {

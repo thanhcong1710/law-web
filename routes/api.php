@@ -46,6 +46,7 @@ Route::group(['middleware' => 'api'], function ($router) {
             Route::post('law-schedules', 'UserController@lawSchedules');
             Route::post('law-schedules/add', 'UserController@addLawSchedules');
             Route::post('law-schedules/delete', 'UserController@deleteLawSchedules');
+            Route::post('upload-file', 'UserController@uploadFile');
         });
         Route::post('payment', 'ApplicationController@demo');
         Route::prefix('video-call')->group(function () {
